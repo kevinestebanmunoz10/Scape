@@ -11,7 +11,7 @@
     <div class="login-wrapper">
         <div class="login-box">
             <h2>Recuperar contraseña</h2>
-            <p class="login-subtitle">Ingresa tu correo y te enviaremos un enlace</p>
+            <p class="login-subtitle">Ingresa tu correo y te enviaremos un código de 8 dígitos</p>
 
             @if (session('status'))
                 <div class="alert alert-success login-alert" role="alert">
@@ -40,7 +40,7 @@
                     <label>Correo electrónico</label>
                 </div>
 
-                <button type="submit" class="btn-login">Enviar enlace</button>
+                <button type="submit" class="btn-login">Enviar código</button>
                 <button type="button" class="btn-back" onclick="window.location.href='{{ url('/admin/login') }}'">Volver al inicio de sesión</button>
             </form>
         </div>

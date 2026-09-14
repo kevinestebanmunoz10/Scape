@@ -13,34 +13,14 @@
             <h2>Nueva contraseña</h2>
             <p class="login-subtitle">Elige una contraseña segura</p>
 
-            @if (session('status'))
-                <div class="alert alert-success login-alert" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-
-            @if ($errors->has('email'))
+            @if ($errors->has('password'))
                 <div class="alert alert-danger login-alert" role="alert">
-                    {{ $errors->first('email') }}
+                    {{ $errors->first('password') }}
                 </div>
             @endif
 
             <form method="POST" action="{{ route('password.store') }}" novalidate>
                 @csrf
-
-                <input type="hidden" name="token" value="{{ $token }}">
-
-                <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                    <input
-                        type="email"
-                        name="email"
-                        autocomplete="email"
-                        required
-                        value="{{ old('email', $email ?? '') }}"
-                    >
-                    <label>Correo electrónico</label>
-                </div>
 
                 <div class="input-box">
                     <span class="icon"><i class="fa-solid fa-lock"></i></span>
@@ -67,12 +47,6 @@
                     >
                     <label>Confirmar contraseña</label>
                 </div>
-
-                @if ($errors->has('password'))
-                    <div class="alert alert-danger login-alert" role="alert">
-                        {{ $errors->first('password') }}
-                    </div>
-                @endif
 
                 <button type="submit" class="btn-login">Restablecer contraseña</button>
                 <button type="button" class="btn-back" onclick="window.location.href='{{ url('/admin/login') }}'">Volver al inicio de sesión</button>
