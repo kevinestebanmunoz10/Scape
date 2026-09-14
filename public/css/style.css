@@ -10,8 +10,12 @@
     --text-muted: #94a3b8;
 }
 
+html {
+    font-size: 19px;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Product Sans', sans-serif;
     background-color: var(--dark-bg);
     color: #f8fafc;
     overflow-x: hidden;
@@ -19,7 +23,7 @@ body {
 }
 
 h1, h2, h3, .navbar-brand {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Product Sans', sans-serif;
 }
 
 /* Navbar */
@@ -179,7 +183,7 @@ section {
     letter-spacing: 0.1em;
 }
 .titulo-nosotros-bold {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Product Sans', sans-serif;
     font-weight: 800;
     font-size: 2.8rem;
     color: #ffffff;
@@ -241,7 +245,7 @@ section {
     font-size: 1.2rem;
 }
 .footer-brand-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Product Sans', sans-serif;
     font-weight: 800;
     font-size: 1.4rem;
     color: #ffffff;
@@ -265,4 +269,215 @@ section {
 }
 .footer-link:hover {
     color: #00d2ff;
+}
+
+/* Cookie Banner - bloquea la página hasta aceptación */
+.cookie-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9998;
+    transition: opacity 0.4s ease;
+}
+.cookie-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--dark-bg);
+    border-top: 1px solid rgba(56,189,248,0.3);
+    padding: 1rem 0;
+    z-index: 9999;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.cookie-banner.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+.cookie-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.cookie-panel.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.cookie-panel-box {
+    background: var(--dark-bg);
+    border: 1px solid rgba(56,189,248,0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.cookie-panel-box h4 {
+    font-family: 'Product Sans', sans-serif;
+}
+.cookie-option .form-check-input {
+    background-color: var(--card-bg);
+    border-color: rgba(255,255,255,0.2);
+}
+.cookie-option .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* ============================================================
+   PLANES
+   ============================================================ */
+.planes-section { padding: 80px 0; }
+.plan-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 100%;
+}
+.plan-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+}
+.plan-card.featured {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 30px rgba(56,189,248,0.15);
+    position: relative;
+}
+.plan-card.featured::before {
+    content: 'Popular';
+    position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(135deg, #1e40af, #0284c7);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 18px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.plan-title {
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.plan-price {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+.plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+.plan-price-annual {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-bottom: 1.25rem;
+}
+.plan-price-annual s { color: var(--text-muted); }
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex-grow: 1;
+}
+.plan-features li {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.plan-features li:last-child { border-bottom: none; }
+.plan-features li i { color: var(--accent-color); font-size: 0.8rem; }
+.toggle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.toggle-switch {
+    width: 48px; height: 26px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 13px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.toggle-switch.active { background: var(--primary-color); }
+.toggle-switch::after {
+    content: '';
+    width: 20px; height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px; left: 3px;
+    transition: transform 0.3s;
+}
+.toggle-switch.active::after { transform: translateX(22px); }
+.plan-annual { display: none; }
+.btn-plan {
+    width: 100%;
+    padding: 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+    display: inline-block;
+}
+.btn-plan-outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+}
+.btn-plan-outline:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+.btn-plan-fill {
+    background: linear-gradient(135deg, #1e40af, #0284c7);
+    border: none;
+    color: #fff;
+}
+.btn-plan-fill:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(2,132,199,0.4);
+    color: #fff;
+}
+.planes-hero {
+    text-align: center;
+    padding: 60px 0 20px;
+}
+.planes-hero h1 { color: #fff; font-weight: 800; margin-bottom: 1rem; }
+.planes-hero p { color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+/* ============================================================
+   F.A.Q.
+   ============================================================ */
+#faq .card-custom {
+    height: auto;
+}
+#faq .card-custom:hover {
+    transform: none;
 }
