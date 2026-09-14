@@ -25,7 +25,7 @@
 }
 
 .login-box h2 {
-    font-family: sans-serif;
+    font-family: 'Product Sans', sans-serif;
     font-weight: 900;
     font-size: 2rem;
     color: #ffffff;
@@ -84,7 +84,7 @@
     font-size: 1em;
     color: #ffffff;
     padding: 0 35px 0 5px;
-    font-family: sans-serif;
+    font-family: 'Product Sans', sans-serif;
 }
 
 .input-box .icon {
@@ -105,7 +105,7 @@
     border-radius: 50px;
     border: none;
     cursor: pointer;
-    font-family: sans-serif;
+    font-family: 'Product Sans', sans-serif;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -127,7 +127,7 @@
     border-radius: 50px;
     border: 1.5px solid rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    font-family: sans-serif;
+    font-family: 'Product Sans', sans-serif;
     font-size: 14px;
     font-weight: 700;
     background: transparent;
@@ -138,20 +138,6 @@
 .btn-back:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: scale(1.02);
-}
-
-/* ── ENLACE RECUPERAR CONTRASEÑA ── */
-.forgot-link {
-    display: inline-block;
-    font-family: sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.forgot-link:hover {
-    color: #00b4ff;
 }
 
 /* ── RESPONSIVE ── */

@@ -4,7 +4,7 @@
 
 @section('content')
     <header id="inicio" class="hero-section text-center text-white">
-        <div class="container">
+        <div class="container" data-aos="fade-up">
             <h1 class="titulo-impacto">
                 Control total <span>de acceso e inventario</span><br>en tu institución
             </h1>
@@ -21,19 +21,19 @@
 
     <section class="container mb-5">
         <div class="row g-4">
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
                 <div class="p-4 card-custom text-center">
                     <p class="text-secondary-custom mb-1 small">Accesos hoy</p>
                     <h2 class="display-4 fw-bold text-white">847</h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="p-4 card-custom text-center">
                     <p class="text-secondary-custom mb-1 small">Puertas activas</p>
                     <h2 class="display-4 fw-bold text-info">24/24</h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="p-4 card-custom text-center">
                     <p class="text-secondary-custom mb-1 small">Alarmas</p>
                     <h2 class="display-4 fw-bold text-danger">3</h2>
@@ -49,33 +49,33 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="p-4 card-func">
+            <div class="col" data-aos="fade-up" data-aos-delay="0">
+                <a href="{{ url('/modulos/personas') }}" class="p-4 card-func d-block text-decoration-none" style="color: inherit;">
                     <div class="icon-box"><i class="bi bi-people-fill"></i></div>
                     <h5 class="text-white">Registro de personal</h5>
                     <p class="text-secondary-custom small m-0">Empleados, docentes y visitantes en un solo directorio. Control mediante QR del carnet.</p>
-                </div>
+                </a>
             </div>
-            <div class="col">
-                <div class="p-4 card-func">
+            <div class="col" data-aos="fade-up" data-aos-delay="100">
+                <a href="{{ url('/modulos/equipos') }}" class="p-4 card-func d-block text-decoration-none" style="color: inherit;">
                     <div class="icon-box"><i class="bi bi-laptop"></i></div>
                     <h5 class="text-white">Inventario de equipos</h5>
                     <p class="text-secondary-custom small m-0">Trazabilidad completa de portátiles y material de informática. Registro de entradas y salidas.</p>
-                </div>
+                </a>
             </div>
-            <div class="col">
-                <div class="p-4 card-func">
+            <div class="col" data-aos="fade-up" data-aos-delay="200">
+                <a href="{{ url('/modulos/visitantes') }}" class="p-4 card-func d-block text-decoration-none" style="color: inherit;">
                     <div class="icon-box"><i class="bi bi-shield-check"></i></div>
                     <h5 class="text-white">Control de visitantes</h5>
                     <p class="text-secondary-custom small m-0">Pre-registro de externos y autorización de entrada. Notificación automática al responsable.</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
     <section id="nosotros" class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-right">
                 <span class="text-cyan text-uppercase fw-bold tracking-wider small mb-3">Acerca de nosotros</span>
                 <h2 class="titulo-nosotros-bold mb-4">
                     Construido por personas <br>
@@ -90,7 +90,7 @@
                 </p>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-left">
                 <div class="card-equipo-container p-4">
                     <span class="text-cyan-light text-uppercase fw-bold small mb-3 d-block">Nuestro Equipo</span>
                     <p class="text-secondary-custom small mb-4">
@@ -99,28 +99,21 @@
 
                     <div class="d-flex flex-column gap-3 mb-4">
                         <div class="role-card p-3 d-flex align-items-center gap-3">
-                            <div class="avatar-box">DE1</div>
+                            <div class="avatar-box">KM</div>
                             <div>
-                                <h6 class="text-white fw-bold mb-0">Desarrollador Backend</h6>
+                                <h6 class="text-white fw-bold mb-0">Kevin Muñoz</h6>
                                 <span class="text-secondary-custom text-xs">PHP · MySQL</span>
                             </div>
                         </div>
 
                         <div class="role-card p-3 d-flex align-items-center gap-3">
-                            <div class="avatar-box">DE2</div>
+                            <div class="avatar-box">JM</div>
                             <div>
-                                <h6 class="text-white fw-bold mb-0">Desarrollador Frontend</h6>
+                                <h6 class="text-white fw-bold mb-0">Julián Meñaca</h6>
                                 <span class="text-secondary-custom text-xs">HTML · CSS · JS</span>
                             </div>
                         </div>
 
-                        <div class="role-card p-3 d-flex align-items-center gap-3">
-                            <div class="avatar-box">DE3</div>
-                            <div>
-                                <h6 class="text-white fw-bold mb-0">Diseño & Base de datos</h6>
-                                <span class="text-secondary-custom text-xs">UX · SQL · ERD</span>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="d-flex flex-wrap gap-2 pt-3 border-top border-dark-custom">
@@ -136,8 +129,105 @@
         </div>
     </section>
 
+    <section id="faq" class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold h1 text-white">Preguntas Frecuentes</h2>
+            <div class="linea-decorativa"></div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <span class="text-cyan text-uppercase fw-bold tracking-wider small mb-3 d-block">General</span>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="0">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g1">
+                        <span class="text-white fw-bold">¿Qué es SCAPE?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-g1" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">SCAPE es una plataforma de control de acceso e inventario diseñada para instituciones educativas. Registra personal, equipos y visitantes de forma centralizada y sin complicaciones.</p>
+                    </div>
+                </div>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g2">
+                        <span class="text-white fw-bold">¿Necesito conocimientos técnicos?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-g2" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">No. SCAPE fue pensado para rectores, coordinadores y vigilantes. La interfaz es intuitiva y no requiere experiencia técnica para usarla.</p>
+                    </div>
+                </div>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g3">
+                        <span class="text-white fw-bold">¿Cuánto cuesta?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-g3" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">Ofrecemos planes desde $29/mes hasta $179/mes según el tamaño de tu institución. Todos incluyen soporte y actualizaciones. Puedes probar gratis antes de contratar.</p>
+                    </div>
+                </div>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g4">
+                        <span class="text-white fw-bold">¿Mis datos están seguros?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-g4" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">Sí. Utilizamos cifrado de datos, autenticación segura y copias de seguridad automáticas. La seguridad es nuestra prioridad número uno.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <span class="text-cyan text-uppercase fw-bold tracking-wider small mb-3 d-block">Por producto</span>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="0">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p1">
+                        <span class="text-white fw-bold">¿Cómo funciona el control de acceso?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-p1" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">Cada persona registra su entrada y salida mediante código QR o tarjeta. El sistema queda visible en tiempo real para administradores y vigilantes.</p>
+                    </div>
+                </div>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p2">
+                        <span class="text-white fw-bold">¿Puedo registrar equipos múltiples?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-p2" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">Sí. El módulo de inventario permite registrar portátiles, equipos de laboratorio y material de informática, controlando entradas, salidas y responsable actual.</p>
+                    </div>
+                </div>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p3">
+                        <span class="text-white fw-bold">¿Cómo se manejan los visitantes?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-p3" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">Los visitantes pueden ser pre-registrados por el responsable. Al llegar, se valida su identidad y se notifica automáticamente al funcionario que recibe.</p>
+                    </div>
+                </div>
+
+                <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p4">
+                        <span class="text-white fw-bold">¿Qué reportes genera el sistema?</span>
+                        <i class="bi bi-plus-lg text-accent-custom"></i>
+                    </button>
+                    <div id="faq-p4" class="collapse px-3 pb-3">
+                        <p class="text-secondary-custom small m-0">SCAPE genera reportes de asistencia, inventario, movimientos y alarmas. Puedes exportarlos en PDF o consultarlos en tiempo real desde el panel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="container py-5">
-        <div class="card card-custom p-5">
+        <div class="card card-custom px-5 py-4" data-aos="zoom-in">
             <div class="row">
                 <div class="col-md-6">
                     <h2 class="fw-bold h1 text-white mb-4">Contáctanos</h2>
