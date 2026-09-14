@@ -13,13 +13,14 @@
             <h2>Iniciar sesión</h2>
             <p class="login-subtitle">Acceso exclusivo para administradores</p>
 
-            @if (! empty($error))
+            @if ($errors->has('documento'))
                 <div class="alert alert-danger login-alert" role="alert">
-                    {{ $error }}
+                    {{ $errors->first('documento') }}
                 </div>
             @endif
 
-            <form method="POST" novalidate>
+            <form method="POST" action="{{ route('login') }}" novalidate>
+                @csrf
                 <div class="input-box">
                     <span class="icon"><i class="fa-solid fa-id-card"></i></span>
                     <input

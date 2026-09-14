@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -10,12 +9,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+#[Fillable(['Documento', 'Nom_usua', 'email', 'Telefono', 'QR', 'Contrasena', 'id_rol', 'id_Estado', 'cod_postal'])]
+#[Hidden(['Contrasena'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $table = 'usuario';
+
+    protected $primaryKey = 'Documento';
+
+    public $incrementing = false;
+
+    public $timestamps = false;
 
     /**
      * Get the attributes that should be cast.
@@ -25,8 +32,12 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'Contrasena' => 'hashed',
         ];
+    }
+
+    public function getAuthPassword(): string
+    {
+        return $this->Contrasena;
     }
 }

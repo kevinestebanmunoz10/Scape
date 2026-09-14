@@ -1,55 +1,65 @@
 <?php
 
+use App\Http\Controllers\PasswordResetController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rules\Password as PasswordRule;
 
 Route::view('/', 'home');
 
-Route::view('/admin/login', 'auth.login');
+Route::get('/admin/login', function () {
+    return view('auth.login');
+})->name('login');
 
-Route::get('/admin/password/reset', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
-
-Route::post('/admin/password/email', function (Request $request) {
+Route::post('/admin/login', function (Request $request) {
     $request->validate([
-        'email' => ['required', 'email'],
+        'documento' => ['required'],
+        'contrasena' => ['required'],
     ]);
 
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
+    if (! Auth::attempt(['Documento' => $request->documento, 'password' => $request->contrasena])) {
+        return back()->withErrors(['documento' => 'Documento o contraseña incorrectos']);
+    }
 
-    return $status === Password::ResetLinkSent
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
+    $request->session()->regenerate();
 
-Route::get('/admin/password/reset/{token}', function (Request $request, string $token) {
-    return view('auth.reset-password', ['token' => $token, 'email' => $request->email]);
-})->middleware('guest')->name('password.reset');
+    return redirect()->route('dashboard');
+});
 
-Route::post('/admin/password/reset', function (Request $request) {
-    $request->validate([
-        'token' => ['required'],
-        'email' => ['required', 'email'],
-        'password' => ['required', 'confirmed', PasswordRule::min(8)],
-    ]);
+Route::post('/admin/logout', function (Request $request) {
+    Auth::logout();
 
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $password) {
-            $user->forceFill([
-                'password' => $password,
-                'remember_token' => Str::random(60),
-            ])->save();
-        }
-    );
+    $request->session()->invalidate();
 
-    return $status === Password::PasswordReset
-        ? redirect()->route('password.request')->with('status', __($status))
-        : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.store');
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login');
+})->name('logout');
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('auth')->name('dashboard');
+
+Route::get('/admin/password/reset', [PasswordResetController::class, 'showForgotForm'])
+    ->middleware('guest')
+    ->name('password.request');
+
+Route::post('/admin/password/email', [PasswordResetController::class, 'sendCode'])
+    ->middleware('guest')
+    ->name('password.email');
+
+Route::get('/admin/password/verify', [PasswordResetController::class, 'showVerifyForm'])
+    ->middleware('guest')
+    ->name('password.verify.form');
+
+Route::post('/admin/password/verify', [PasswordResetController::class, 'verifyCode'])
+    ->middleware('guest')
+    ->name('password.verify');
+
+Route::get('/admin/password/new', [PasswordResetController::class, 'showResetForm'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+Route::post('/admin/password/reset', [PasswordResetController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.store');
