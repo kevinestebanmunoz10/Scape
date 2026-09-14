@@ -1,0 +1,268 @@
+/* ============================================================
+   ESTILOS GENERALES - SCAPE
+   ============================================================ */
+
+:root {
+    --primary-color: #0d6efd;
+    --dark-bg: #0f172a;
+    --card-bg: #1e293b;
+    --accent-color: #38bdf8;
+    --text-muted: #94a3b8;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: #f8fafc;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    background: radial-gradient(circle at top right, rgba(13, 110, 253, 0.15), transparent);
+}
+
+.titulo-impacto {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.titulo-impacto span {
+    color: var(--accent-color);
+}
+
+/* Tarjetas */
+.card-custom {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 16px;
+    height: 100%;
+}
+
+.card-custom:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color);
+}
+
+.card-func {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.card-func:hover {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Decoración */
+.linea-decorativa {
+    width: 60px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
+    margin: 1rem auto;
+}
+
+.linea-decorativa.ms-0 {
+    margin-left: 0;
+}
+
+/* Botones */
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.btn-primary-custom:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Secciones */
+section {
+    scroll-margin-top: 80px;
+}
+
+/* Footer Antiguo (Mantenido por compatibilidad) */
+.footer-custom {
+    background: #020617;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Formulario */
+.form-control {
+    background-color: rgba(15, 23, 42, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.25) !important;
+}
+
+/* ============================================================
+   NUEVAS CORRECCIONES DE CONTRASTE Y MOCKUPS
+   ============================================================ */
+
+/* Corrección radical para forzar que text-muted y text-secondary usen tu color claro */
+.text-muted, .text-secondary-custom {
+    color: var(--text-muted) !important;
+}
+
+/* Corrección de inputs, placeholders e iconos en Contáctanos */
+.text-accent-custom {
+    color: var(--accent-color) !important;
+}
+
+.form-control::placeholder {
+    color: rgba(248, 250, 252, 0.5) !important; /* Texto del placeholder claro y legible */
+}
+
+/* Estilos para Acerca de Nosotros (image_502b22.png) */
+.text-cyan {
+    color: #00bacf;
+}
+.text-cyan-light {
+    color: #00d2ff;
+}
+.tracking-wider {
+    letter-spacing: 0.1em;
+}
+.titulo-nosotros-bold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: #ffffff;
+    line-height: 1.1;
+}
+.text-gradient-cyan {
+    color: #00d2ff;
+}
+
+/* Tarjeta contenedora del equipo */
+.card-equipo-container {
+    background-color: #0d1527; 
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+}
+.role-card {
+    background-color: #131f37;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+.avatar-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #fff;
+    background: linear-gradient(135deg, #1e40af, #0284c7);
+}
+.border-dark-custom {
+    border-color: #1e293b !important;
+}
+.badge-tech {
+    background-color: #0f172a;
+    color: #38bdf8;
+    border: 1px solid #334155;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+}
+
+/* Estilos del Nuevo Footer (image_502843.png) */
+.footer-scape-custom {
+    background-color: #090f1c; 
+    border-top: 1px solid #1e293b;
+}
+.brand-icon-shield {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #00bacf;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00bacf;
+    font-size: 1.2rem;
+}
+.footer-brand-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+.footer-brand-subtitle {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+}
+.footer-section-title {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+.footer-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.footer-link:hover {
+    color: #00d2ff;
+}
