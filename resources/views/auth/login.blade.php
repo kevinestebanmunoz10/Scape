@@ -49,9 +49,6 @@
                 </div>
 
                 <button type="submit" class="btn-login">Ingresar</button>
-                <div class="text-center mb-3">
-                    <a href="{{ route('password.request') }}" class="forgot-link">¿Olvidaste tu contraseña?</a>
-                </div>
                 <button type="button" class="btn-back" onclick="window.location.href='{{ url('/') }}'">Volver al inicio</button>
             </form>
         </div>
