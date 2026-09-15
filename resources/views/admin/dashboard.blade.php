@@ -9,10 +9,7 @@
 @section('content')
     <div class="dashboard-shell">
         <aside class="sidebar">
-            <div class="logo">
-                SCAPE
-                <svg viewBox="0 0 24 24" fill="none" stroke="#4a90e2" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-            </div>
+
 
             <div class="cuenta-label">CUENTA</div>
             <nav class="menu sidebar-account">
@@ -61,10 +58,7 @@
             </aside>
 
         <main class="main">
-            <div class="topbar">
-                <h1 class="title">Dashboard</h1>
-                <div class="admin-name">{{ auth()->user()->Nom_usua }}</div>
-            </div>
+
 
             <div class="header-row">
                 <div class="date-filter">
