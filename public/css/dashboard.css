@@ -1,5 +1,13 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:#0c1324; color:#e8ebf1; display:flex; min-height:100vh; font-family:'Product Sans',sans-serif; font-size:19px; }
+.dashboard-shell {
+  background:#0c1324;
+  color:#e8ebf1;
+  display:flex;
+  align-items:stretch;
+  min-height: calc(100vh - 76px);
+  font-family:'Product Sans',sans-serif;
+  font-size:19px;
+}
+.dashboard-shell * { box-sizing:border-box; }
 
 .sidebar {
   width:230px;
@@ -7,6 +15,7 @@ body { background:#0c1324; color:#e8ebf1; display:flex; min-height:100vh; font-f
   padding:28px 22px;
   display:flex;
   flex-direction:column;
+  flex-shrink:0;
 }
 .logo {
   display:flex; align-items:center; gap:8px;
@@ -29,6 +38,8 @@ nav.menu { display:flex; flex-direction:column; gap:4px; }
 }
 
 .sidebar-bottom { margin-top:auto; }
+
+.sidebar-main { margin-top:28px; }
 
 .main { flex:1; padding:30px 44px; }
 .topbar {
