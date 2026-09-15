@@ -11,7 +11,7 @@
         <aside class="sidebar">
 
 
-            <div class="cuenta-label">CUENTA</div>
+            <div class="cuenta-label">USUARIO</div>
             <nav class="menu sidebar-account">
                 <a href="#">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>
