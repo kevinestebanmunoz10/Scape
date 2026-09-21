@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\Rector\UsuariosController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -65,6 +67,12 @@ Route::get('/admin/perfil', function () {
     return view('admin.perfil', ['rol' => $rol]);
 })->middleware(['auth', 'admin'])->name('admin.perfil');
 
+// donde se redirige al administrador a su panel
+Route::resource('admin/usuarios', UserController::class)
+    ->parameters(['usuarios' => 'usuario'])
+    ->names('admin.usuarios')
+    ->middleware(['auth', 'admin']);
+
 Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->group(function () {
     Route::view('dashboard', 'profesor.dashboard')->name('dashboard');
 
@@ -85,6 +93,11 @@ Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->
 
 Route::prefix('rector')->name('rector.')->middleware(['auth', 'rector'])->group(function () {
     Route::view('dashboard', 'rector.dashboard')->name('dashboard');
+
+    Route::resource('usuarios', UsuariosController::class)
+        ->parameters(['usuarios' => 'usuario'])
+        ->names('usuarios')
+        ->except('destroy');
 
     Route::get('perfil', function () {
         $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
