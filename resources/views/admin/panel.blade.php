@@ -33,7 +33,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>
                     Usuarios
                 </a>
-                <a href="#">
+                <a href="{{ route('admin.accesos') }}" class="{{ request()->routeIs('admin.accesos') ? 'active' : '' }}">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="4" rx="1"/><rect x="3" y="14" width="18" height="4" rx="1"/></svg>
                     Accesos
                 </a>

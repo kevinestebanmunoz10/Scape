@@ -131,6 +131,54 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 .panel-empty { font-size:14px; color:#8891a3; margin:0; }
 .profile-value { color:#8891a3; }
 
+.filter-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+.filter-select, .filter-input {
+  background:#151f38; border:0; border-radius:9px; color:#e5e9f0;
+  padding:10px 14px; font-family:inherit; font-size:14px; color-scheme:dark; outline:none;
+}
+.filter-input { min-width:220px; }
+.filter-input::placeholder { color:#5c6579; }
+.filter-clear { color:#8891a3; font-size:13px; text-decoration:none; }
+.filter-clear:hover { color:#fff; }
+
+.tipo-pill {
+  display:inline-block; padding:3px 10px; border-radius:999px;
+  background:rgba(74,144,226,0.15); color:#6fb0f0; font-size:12px; font-weight:600;
+}
+.estado-pill { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+.estado-dentro { background:rgba(46,204,113,0.15); color:#2ecc71; }
+.estado-fuera { background:rgba(231,76,60,0.15); color:#e74c3c; }
+
+.pagination-wrap { margin-top:18px; }
+.pagination-wrap .pagination { margin:0; }
+.pagination-wrap .page-link { background:#151f38; border:1px solid #232d4a; color:#c3c9d8; }
+.pagination-wrap .page-link:hover { background:#1b2745; color:#fff; }
+.pagination-wrap .page-item.active .page-link { background:#4a90e2; border-color:#4a90e2; color:#fff; }
+.pagination-wrap .page-item.disabled .page-link { background:#0f1729; color:#4d5468; }
+
+.alert { border-radius:10px; padding:14px 18px; font-size:14px; margin-bottom:18px; }
+.alert-ok { background:rgba(46,204,113,0.12); color:#7fe0a5; border:1px solid rgba(46,204,113,0.3); }
+.alert-bad { background:rgba(231,76,60,0.12); color:#f2a49c; border:1px solid rgba(231,76,60,0.3); }
+
+.ingreso-panel { max-width:620px; }
+.ingreso-form { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+.form-field { display:flex; flex-direction:column; gap:8px; width:100%; }
+.form-field label { font-size:13px; font-weight:600; color:#8891a3; }
+.form-field .filter-select, .form-field .filter-input { width:100%; min-width:0; }
+.ingreso-form .date-apply { padding:11px 22px; font-size:14px; }
+
+.confirm-card {
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px;
+  background:#151f38; border:1px solid #232d4a; border-radius:12px; padding:20px 22px;
+}
+.confirm-label { font-size:11px; letter-spacing:1px; font-weight:600; color:#8891a3; }
+.confirm-name { font-size:20px; font-weight:700; margin-top:6px; }
+.confirm-meta { font-size:13px; color:#8891a3; margin-top:4px; }
+.btn-entrada { background:#2ecc71; }
+.btn-entrada:hover { background:#27b866; }
+.btn-salida { background:#e74c3c; }
+.btn-salida:hover { background:#c0392b; }
+
 .vigilante-actions {
   display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:8px;
 }

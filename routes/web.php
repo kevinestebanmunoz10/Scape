@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AccesoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\RegistroIngresoController;
+use App\Http\Controllers\RegistroSalidaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,6 +62,10 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'admin'])
     ->name('dashboard');
 
+Route::get('/admin/accesos', [AccesoController::class, 'index'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.accesos');
+
 Route::get('/admin/perfil', function () {
     $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
 
@@ -95,6 +102,18 @@ Route::prefix('rector')->name('rector.')->middleware(['auth', 'rector'])->group(
 
 Route::prefix('vigilante')->name('vigilante.')->middleware(['auth', 'vigilante'])->group(function () {
     Route::view('dashboard', 'vigilante.dashboard')->name('dashboard');
+
+    Route::get('entrada', [RegistroIngresoController::class, 'create'])->name('entrada');
+
+    Route::post('entrada/buscar', [RegistroIngresoController::class, 'buscar'])->name('entrada.buscar');
+
+    Route::post('entrada', [RegistroIngresoController::class, 'store'])->name('entrada.store');
+
+    Route::get('salida', [RegistroSalidaController::class, 'create'])->name('salida');
+
+    Route::post('salida/buscar', [RegistroSalidaController::class, 'buscar'])->name('salida.buscar');
+
+    Route::post('salida', [RegistroSalidaController::class, 'store'])->name('salida.store');
 
     Route::get('perfil', function () {
         $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
