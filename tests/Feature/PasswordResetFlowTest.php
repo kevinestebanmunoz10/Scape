@@ -52,7 +52,7 @@ class PasswordResetFlowTest extends TestCase
         $this->from('/admin/password/new')->post('/admin/password/reset', [
             'password' => 'nueva-clave-123',
             'password_confirmation' => 'nueva-clave-123',
-        ])->assertRedirect('/admin/login');
+        ])->assertRedirect('/login');
 
         $this->assertDatabaseMissing('password_reset_tokens', ['email' => $user->email]);
 

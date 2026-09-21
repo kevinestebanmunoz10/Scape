@@ -23,24 +23,29 @@
             <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                 <img src="{{ asset('storage/uploads/logo.png') }}" alt="Logo SCAPE" style="height: 50px; width: auto;">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}#caracteristicas">Características</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}#nosotros">Acerca de nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}#contacto">Contáctanos</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="{{ url('/planes') }}">Planes</a></li>
 
-                </ul>
-                @auth
-                    <span class="text-white small fw-semibold d-none d-md-inline">{{ auth()->user()->Nom_usua }}</span>
-                @else
-                    <a href="{{ url('/admin/login') }}" class="btn btn-outline-light rounded-pill px-4">Iniciar sesión</a>
-                @endauth
-            </div>
+            @hasSection('panel-navbar')
+                <span class="text-white small fw-semibold">{{ auth()->user()->Nom_usua }}</span>
+            @else
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}#caracteristicas">Características</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}#nosotros">Acerca de nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="{{ url('/') }}#contacto">Contáctanos</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="{{ url('/planes') }}">Planes</a></li>
+
+                    </ul>
+                    @auth
+                        <span class="text-white small fw-semibold d-none d-md-inline">{{ auth()->user()->Nom_usua }}</span>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-outline-light rounded-pill px-4">Iniciar sesión</a>
+                    @endauth
+                </div>
+            @endif
         </div>
     </nav>
 

@@ -41,6 +41,19 @@ class User extends Authenticatable
         return $this->Contrasena;
     }
 
+    /**
+     * Get the dashboard route name that corresponds to the user's role.
+     */
+    public function panelRoute(): string
+    {
+        return match ((int) $this->id_rol) {
+            2 => 'profesor.dashboard',
+            3 => 'rector.dashboard',
+            4 => 'vigilante.dashboard',
+            default => 'dashboard',
+        };
+    }
+
     public function estado()
     {
         return $this->belongsTo(Estado::class, 'id_Estado', 'id_estado');
