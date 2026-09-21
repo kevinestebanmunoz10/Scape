@@ -14,12 +14,12 @@
     </div>
 
     <section class="vigilante-actions">
-        <a href="#" class="action-card entrada">
+        <a href="{{ route('vigilante.entrada') }}" class="action-card entrada">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
             ENTRADA
             <span class="action-hint">Registrar ingreso</span>
         </a>
-        <a href="#" class="action-card salida">
+        <a href="{{ route('vigilante.salida') }}" class="action-card salida">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
             SALIDA
             <span class="action-hint">Registrar egreso</span>
