@@ -49,7 +49,7 @@
                 </div>
 
                 <button type="submit" class="btn-login">Restablecer contraseña</button>
-                <button type="button" class="btn-back" onclick="window.location.href='{{ url('/admin/login') }}'">Volver al inicio de sesión</button>
+                <button type="button" class="btn-back" onclick="window.location.href='{{ route('login') }}'">Volver al inicio de sesión</button>
             </form>
         </div>
     </div>

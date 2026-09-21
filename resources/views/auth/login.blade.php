@@ -11,7 +11,7 @@
     <div class="login-wrapper">
         <div class="login-box">
             <h2>Iniciar sesión</h2>
-            <p class="login-subtitle">Acceso exclusivo para administradores</p>
+            <p class="login-subtitle">Ingresa tus credenciales</p>
 
             @if ($errors->has('documento'))
                 <div class="alert alert-danger login-alert" role="alert">

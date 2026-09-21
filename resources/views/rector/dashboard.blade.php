@@ -1,6 +1,6 @@
-@extends('admin.panel')
+@extends('rector.panel')
 
-@section('title', 'Administrador - Dashboard')
+@section('title', 'Rector - Dashboard')
 
 @section('panel-content')
     <div class="header-row">
