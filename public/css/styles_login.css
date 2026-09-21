@@ -140,6 +140,45 @@
     transform: scale(1.02);
 }
 
+.btn-back--login {
+    margin-top: 16px;
+}
+
+/* ── ENLACE RECUPERAR CONTRASEÑA ── */
+.login-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.forgot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Product Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+.forgot-link i {
+    font-size: 0.85rem;
+    color: #00b4ff;
+    transition: color 0.25s;
+}
+
+.forgot-link:hover {
+    color: #ffffff;
+}
+
+.forgot-link:hover i {
+    color: #33c4ff;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 500px) {
     .login-wrapper {
