@@ -40,4 +40,14 @@ class User extends Authenticatable
     {
         return $this->Contrasena;
     }
+
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class, 'id_Estado', 'id_estado');
+    }
+
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class, 'id_rol', 'id_rol');
+    }
 }

@@ -1,11 +1,20 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PasswordResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'home');
+Route::get('/', function (Request $request) {
+    if (Auth::check()) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    }
+
+    return view('home');
+});
 
 Route::view('/planes', 'planes');
 
@@ -43,9 +52,9 @@ Route::post('/admin/logout', function (Request $request) {
     return redirect()->route('login');
 })->name('logout');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth')->name('dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
 
 Route::get('/admin/password/reset', [PasswordResetController::class, 'showForgotForm'])
     ->middleware('guest')

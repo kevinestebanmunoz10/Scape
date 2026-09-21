@@ -35,7 +35,11 @@
                     <li class="nav-item"><a class="nav-link px-3" href="{{ url('/planes') }}">Planes</a></li>
 
                 </ul>
-                <a href="{{ url('/admin/login') }}" class="btn btn-outline-light rounded-pill px-4">Iniciar sesión</a>
+                @auth
+                    <span class="text-white small fw-semibold d-none d-md-inline">{{ auth()->user()->Nom_usua }}</span>
+                @else
+                    <a href="{{ url('/admin/login') }}" class="btn btn-outline-light rounded-pill px-4">Iniciar sesión</a>
+                @endauth
             </div>
         </div>
     </nav>

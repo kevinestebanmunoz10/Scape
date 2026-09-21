@@ -49,7 +49,15 @@
                 </div>
 
                 <button type="submit" class="btn-login">Ingresar</button>
-                <button type="button" class="btn-back" onclick="window.location.href='{{ url('/') }}'">Volver al inicio</button>
+
+                <div class="login-links">
+                    <a href="{{ route('password.request') }}" class="forgot-link">
+                        <i class="fa-solid fa-lock"></i>
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+
+                <button type="button" class="btn-back btn-back--login" onclick="window.location.href='{{ url('/') }}'">Volver al inicio</button>
             </form>
         </div>
     </div>

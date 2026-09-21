@@ -1,5 +1,13 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:#0c1324; color:#e8ebf1; display:flex; min-height:100vh; font-family:'Product Sans',sans-serif; font-size:19px; }
+.dashboard-shell {
+  background:#0c1324;
+  color:#e8ebf1;
+  display:flex;
+  align-items:stretch;
+  min-height: calc(100vh - 76px);
+  font-family:'Product Sans',sans-serif;
+  font-size:19px;
+}
+.dashboard-shell * { box-sizing:border-box; }
 
 .sidebar {
   width:230px;
@@ -7,6 +15,7 @@ body { background:#0c1324; color:#e8ebf1; display:flex; min-height:100vh; font-f
   padding:28px 22px;
   display:flex;
   flex-direction:column;
+  flex-shrink:0;
 }
 .logo {
   display:flex; align-items:center; gap:8px;
@@ -30,6 +39,8 @@ nav.menu { display:flex; flex-direction:column; gap:4px; }
 
 .sidebar-bottom { margin-top:auto; }
 
+.sidebar-main { margin-top:28px; }
+
 .main { flex:1; padding:30px 44px; }
 .topbar {
   display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;
@@ -48,6 +59,16 @@ h1.title { font-size:34px; font-weight:700; }
   color:#e5e9f0; display:flex; align-items:center; gap:10px; font-size:14px;
 }
 .date-box svg { width:15px; height:15px; opacity:0.6; }
+.date-box input[type="date"] {
+  background:transparent; border:0; outline:none; color:#e5e9f0;
+  font-family:inherit; font-size:14px; color-scheme:dark; cursor:pointer;
+}
+.date-box .date-sep { opacity:0.5; }
+.date-apply {
+  background:#4a90e2; color:#fff; border:0; border-radius:7px;
+  padding:7px 14px; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer;
+}
+.date-apply:hover { background:#3a7bc8; }
 
 .stats-grid {
   display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:22px;
