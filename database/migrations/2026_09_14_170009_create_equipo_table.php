@@ -14,9 +14,11 @@ return new class extends Migration
             $table->unsignedInteger('id_Marca');
             $table->string('Color', 30)->nullable();
             $table->string('imagen', 255)->nullable();
+            $table->bigInteger('Documento')->nullable();
             $table->primary('serial_equi');
             $table->foreign('id_t_equip')->references('id_t_equip')->on('tipo_equipo');
             $table->foreign('id_Marca')->references('id_marca')->on('marca');
+            $table->foreign('Documento')->references('Documento')->on('usuario');
         });
     }
 
