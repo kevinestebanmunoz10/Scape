@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccesoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\Rector\UsuariosController;
 use App\Http\Controllers\RegistroIngresoController;
@@ -36,13 +37,23 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', function (Request $request) {
-    $request->validate([
-        'documento' => ['required'],
-        'contrasena' => ['required'],
+    $datos = $request->validate([
+        'documento' => ['required', 'string'],
+        'contrasena' => ['required', 'string'],
     ]);
 
-    if (! Auth::attempt(['Documento' => $request->documento, 'password' => $request->contrasena])) {
-        return back()->withErrors(['documento' => 'Documento o contraseña incorrectos']);
+    $documento = trim($datos['documento']);
+    $contrasena = $datos['contrasena'];
+
+    if (! Auth::attempt([
+        'Documento' => $documento,
+        'password' => $contrasena,
+    ])) {
+        return back()
+            ->withInput($request->only('documento'))
+            ->withErrors([
+                'documento' => 'Documento o contraseña incorrectos.',
+            ]);
     }
 
     $request->session()->regenerate();
@@ -78,6 +89,11 @@ Route::get('/admin/perfil', function () {
 Route::resource('admin/usuarios', UserController::class)
     ->parameters(['usuarios' => 'usuario'])
     ->names('admin.usuarios')
+    ->middleware(['auth', 'admin']);
+
+Route::resource('admin/equipos', EquipoController::class)
+    ->parameters(['equipos' => 'equipo'])
+    ->names('admin.equipos')
     ->middleware(['auth', 'admin']);
 
 Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->group(function () {

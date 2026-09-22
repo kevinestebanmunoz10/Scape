@@ -45,7 +45,7 @@
                             <td>{{ $usuario->Documento }}</td>
                             <td>{{ $usuario->Nom_usua }}</td>
                             <td>{{ $usuario->email }}</td>
-                            <td>{{ $usuario->rol?->rol ?? '&mdash;' }}</td>
+                            <td>{{ $usuario->rol?->rol ?? '—' }}</td>
                             <td>
                                 @if ((int) $usuario->estado?->estado === 1)
                                     <span class="badge badge-active">Activo</span>

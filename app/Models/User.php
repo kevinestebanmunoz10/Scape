@@ -3,14 +3,10 @@
 namespace App\Models;
 
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['Documento', 'Nom_usua', 'email', 'Telefono', 'QR', 'Contrasena', 'id_rol', 'id_Estado', 'cod_postal'])]
-#[Hidden(['Contrasena'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -22,7 +18,25 @@ class User extends Authenticatable
 
     public $incrementing = false;
 
+    protected $keyType = 'string';
+
     public $timestamps = false;
+
+    protected $fillable = [
+        'Documento',
+        'Nom_usua',
+        'email',
+        'Telefono',
+        'QR',
+        'Contrasena',
+        'id_rol',
+        'id_Estado',
+        'cod_postal',
+    ];
+
+    protected $hidden = [
+        'Contrasena',
+    ];
 
     /**
      * Get the attributes that should be cast.
