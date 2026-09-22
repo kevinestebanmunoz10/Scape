@@ -105,6 +105,7 @@ class RectorPanelTest extends TestCase
         $this->post('/login', [
             'documento' => '10000000003',
             'contrasena' => 'rector123',
+            'terminos' => '1',
         ])->assertRedirect(route('rector.dashboard'));
     }
 

@@ -58,11 +58,18 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ route('admin.usuarios.destroy', $usuario) }}"
-            class="delete-block" onsubmit="return confirm('&iquest;Seguro que deseas eliminar este usuario?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Eliminar usuario</button>
-        </form>
+        @if ((int) $usuario->estado?->estado === 1)
+            <form method="POST" action="{{ route('admin.usuarios.destroy', $usuario) }}"
+                class="delete-block" onsubmit="return confirm('&iquest;Seguro que deseas desactivar este usuario?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Desactivar usuario</button>
+            </form>
+        @else
+            <form method="POST" action="{{ route('admin.usuarios.activar', $usuario) }}" class="delete-block">
+                @csrf
+                <button type="submit" class="btn btn-primary">Activar usuario</button>
+            </form>
+        @endif
     </div>
 @endsection
