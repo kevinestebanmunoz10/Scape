@@ -16,7 +16,7 @@ class Equipo extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['serial_equi', 'id_t_equip', 'id_Marca', 'Color', 'imagen'];
+    protected $fillable = ['serial_equi', 'id_t_equip', 'id_Marca', 'Color', 'imagen', 'Documento'];
 
     public function tipo()
     {
@@ -26,6 +26,11 @@ class Equipo extends Model
     public function marca()
     {
         return $this->belongsTo(Marca::class, 'id_Marca', 'id_marca');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'Documento', 'Documento');
     }
 
     public function prestamos()

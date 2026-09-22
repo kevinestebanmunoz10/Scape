@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccesoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\Rector\UsuariosController;
 use App\Http\Controllers\RegistroIngresoController;
@@ -36,18 +37,28 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', function (Request $request) {
-    $request->validate([
+    $datos = $request->validate([
         // Validación en tiempo real del documento: obligatorio (solo números se garantiza en el input).
-        'documento' => ['required'],
+        'documento' => ['required', 'string'],
         // Validación en tiempo real de la contraseña: mínimo 6 caracteres, con minúsculas y números.
-        'contrasena' => ['required', 'min:6', 'regex:/[a-z]/', 'regex:/[0-9]/'],
+        'contrasena' => ['required', 'string', 'min:6', 'regex:/[a-z]/', 'regex:/[0-9]/'],
         'terminos' => ['accepted'],
     ], [
         'terminos.accepted' => 'Debes aceptar los términos y condiciones para iniciar sesión.',
     ]);
 
-    if (! Auth::attempt(['Documento' => $request->documento, 'password' => $request->contrasena])) {
-        return back()->withErrors(['documento' => 'Documento o contraseña incorrectos']);
+    $documento = trim($datos['documento']);
+    $contrasena = $datos['contrasena'];
+
+    if (! Auth::attempt([
+        'Documento' => $documento,
+        'password' => $contrasena,
+    ])) {
+        return back()
+            ->withInput($request->only('documento'))
+            ->withErrors([
+                'documento' => 'Documento o contraseña incorrectos.',
+            ]);
     }
 
     $request->session()->regenerate();
@@ -88,6 +99,11 @@ Route::resource('admin/usuarios', UserController::class)
 Route::post('admin/usuarios/{usuario}/activar', [UserController::class, 'activar'])
     ->middleware(['auth', 'admin'])
     ->name('admin.usuarios.activar');
+
+Route::resource('admin/equipos', EquipoController::class)
+    ->parameters(['equipos' => 'equipo'])
+    ->names('admin.equipos')
+    ->middleware(['auth', 'admin']);
 
 Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->group(function () {
     Route::view('dashboard', 'profesor.dashboard')->name('dashboard');

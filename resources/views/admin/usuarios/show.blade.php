@@ -44,7 +44,7 @@
             </div>
             <div class="prestamo-item">
                 <span>Rol</span>
-                <span class="profile-value">{{ $usuario->rol?->rol ?? '&mdash;' }}</span>
+                <span class="profile-value">{{ $usuario->rol?->rol ?? '—' }}</span>
             </div>
             <div class="prestamo-item">
                 <span>Estado</span>
