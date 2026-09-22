@@ -22,6 +22,7 @@ class LoginFlowTest extends TestCase
         $this->post('/login', [
             'documento' => '10000000001',
             'contrasena' => 'admin123',
+            'terminos' => '1',
         ])
             ->assertRedirect(route('dashboard'));
 
@@ -33,6 +34,7 @@ class LoginFlowTest extends TestCase
         $this->post('/login', [
             'documento' => '  10000000001  ',
             'contrasena' => 'admin123',
+            'terminos' => '1',
         ])
             ->assertRedirect(route('dashboard'));
 
@@ -43,7 +45,8 @@ class LoginFlowTest extends TestCase
     {
         $this->from(route('login'))->post('/login', [
             'documento' => '10000000001',
-            'contrasena' => 'incorrecta',
+            'contrasena' => 'incorrecta1',
+            'terminos' => '1',
         ])
             ->assertRedirect(route('login'))
             ->assertSessionHasErrors(['documento' => 'Documento o contraseña incorrectos.'])

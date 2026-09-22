@@ -7,6 +7,7 @@
     <div class="container">
         <h1>Planes que se adaptan a ti</h1>
         <p>Elige el plan ideal para tu institución. Todos incluyen soporte técnico y actualizaciones.</p>
+        <a href="#" class="btn-plan-hero">Solicita tu prueba gratis</a>
     </div>
 </section>
 
@@ -18,7 +19,8 @@
             <span>Anual <span class="badge bg-success bg-opacity-25 text-success ms-1">-20%</span></span>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+
             <div class="col">
                 <div class="plan-card">
                     <h5 class="plan-title">Emprendedor</h5>
@@ -28,7 +30,7 @@
                     </div>
                     <div class="plan-annual">
                         <div class="plan-price">$40.000 <span>/mes</span></div>
-                        <div class="plan-price-annual"><s>$348</s> &nbsp;pagando $276/año</div>
+                        <div class="plan-price-annual"><s>$348</s> &nbsp;pagando $400,000/año</div>
                     </div>
                     <ul class="plan-features">
                         <li><i class="bi bi-check2-circle"></i> 1 sede</li>
@@ -37,7 +39,7 @@
                         <li><i class="bi bi-check2-circle"></i> Reportes mensuales</li>
                         <li><i class="bi bi-check2-circle"></i> Soporte por correo</li>
                     </ul>
-                    <a href="#" class="btn-plan btn-plan-outline">Probar Gratis</a>
+                    <a href="#" class="btn-plan btn-plan-outline">COMPRAR</a>
                 </div>
             </div>
 
@@ -51,7 +53,7 @@
                     </div>
                     <div class="plan-annual">
                         <div class="plan-price">$60.000 <span>/mes</span></div>
-                        <div class="plan-price-annual"><s>$708</s> &nbsp;pagando $564/año</div>
+                        <div class="plan-price-annual"><s>$708</s> &nbsp;pagando $600,000/año</div>
                     </div>
                     <ul class="plan-features">
                         <li><i class="bi bi-check2-circle"></i> 3 sedes</li>
@@ -61,7 +63,7 @@
                         <li><i class="bi bi-check2-circle"></i> Reportes semanales</li>
                         <li><i class="bi bi-check2-circle"></i> Soporte prioritario</li>
                     </ul>
-                    <a href="#" class="btn-plan btn-plan-outline">Probar Gratis</a>
+                    <a href="#" class="btn-plan btn-plan-outline">COMPRAR</a>
                 </div>
             </div>
 
@@ -75,7 +77,7 @@
                     </div>
                     <div class="plan-annual">
                         <div class="plan-price">$80.000 <span>/mes</span></div>
-                        <div class="plan-price-annual"><s>$1,188</s> &nbsp;pagando $948/año</div>
+                        <div class="plan-price-annual"><s>$1,188</s> &nbsp;pagando $800,000/año</div>
                     </div>
                     <ul class="plan-features">
                         <li><i class="bi bi-check2-circle"></i> 10 sedes</li>
@@ -86,7 +88,7 @@
                         <li><i class="bi bi-check2-circle"></i> Soporte 24/7</li>
                         <li><i class="bi bi-check2-circle"></i> API de integración</li>
                     </ul>
-                    <a href="#" class="btn-plan btn-plan-fill">Probar Gratis</a>
+                    <a href="#" class="btn-plan btn-plan-fill">COMPRAR</a>
                 </div>
             </div>
 
@@ -100,7 +102,7 @@
                     </div>
                     <div class="plan-annual">
                         <div class="plan-price">$100.000 <span>/mes</span></div>
-                        <div class="plan-price-annual"><s>$2,148</s> &nbsp;pagando $1,716/año</div>
+                        <div class="plan-price-annual"><s>$2,148</s> &nbsp;pagando $1,000,000/año</div>
                     </div>
                     <ul class="plan-features">
                         <li><i class="bi bi-check2-circle"></i> Sedes ilimitadas</li>
@@ -112,7 +114,7 @@
                         <li><i class="bi bi-check2-circle"></i> API + personalización</li>
                         <li><i class="bi bi-check2-circle"></i> Capacitación incluida</li>
                     </ul>
-                    <a href="#" class="btn-plan btn-plan-outline">Probar Gratis</a>
+                    <a href="#" class="btn-plan btn-plan-outline">COMPRAR</a>
                 </div>
             </div>
         </div>

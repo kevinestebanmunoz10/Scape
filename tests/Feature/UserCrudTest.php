@@ -168,7 +168,7 @@ class UserCrudTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    public function test_admin_can_delete_another_user(): void
+    public function test_admin_can_deactivate_another_user(): void
     {
         $this->seed(ProfesorSeeder::class);
         $admin = $this->admin();
@@ -177,10 +177,28 @@ class UserCrudTest extends TestCase
             ->delete('/admin/usuarios/10000000002')
             ->assertRedirect(route('admin.usuarios.index'));
 
-        $this->assertDatabaseMissing('usuario', ['Documento' => 10000000002]);
+        $this->assertDatabaseHas('usuario', [
+            'Documento' => 10000000002,
+            'id_Estado' => 2,
+        ]);
     }
 
-    public function test_admin_cannot_delete_their_own_account(): void
+    public function test_admin_can_activate_a_user(): void
+    {
+        $this->seed(ProfesorSeeder::class);
+        $admin = $this->admin();
+
+        $this->actingAs($admin)
+            ->post('/admin/usuarios/10000000002/activar')
+            ->assertRedirect(route('admin.usuarios.index'));
+
+        $this->assertDatabaseHas('usuario', [
+            'Documento' => 10000000002,
+            'id_Estado' => 1,
+        ]);
+    }
+
+    public function test_admin_cannot_deactivate_their_own_account(): void
     {
         $admin = $this->admin();
 

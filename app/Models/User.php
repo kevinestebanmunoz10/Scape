@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+    // para definir a que tabla de la base de datos apunta
 
     protected $table = 'usuario';
 

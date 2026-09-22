@@ -38,8 +38,13 @@ Route::get('/login', function () {
 
 Route::post('/login', function (Request $request) {
     $datos = $request->validate([
+        // Validación en tiempo real del documento: obligatorio (solo números se garantiza en el input).
         'documento' => ['required', 'string'],
-        'contrasena' => ['required', 'string'],
+        // Validación en tiempo real de la contraseña: mínimo 6 caracteres, con minúsculas y números.
+        'contrasena' => ['required', 'string', 'min:6', 'regex:/[a-z]/', 'regex:/[0-9]/'],
+        'terminos' => ['accepted'],
+    ], [
+        'terminos.accepted' => 'Debes aceptar los términos y condiciones para iniciar sesión.',
     ]);
 
     $documento = trim($datos['documento']);
@@ -90,6 +95,10 @@ Route::resource('admin/usuarios', UserController::class)
     ->parameters(['usuarios' => 'usuario'])
     ->names('admin.usuarios')
     ->middleware(['auth', 'admin']);
+
+Route::post('admin/usuarios/{usuario}/activar', [UserController::class, 'activar'])
+    ->middleware(['auth', 'admin'])
+    ->name('admin.usuarios.activar');
 
 Route::resource('admin/equipos', EquipoController::class)
     ->parameters(['equipos' => 'equipo'])

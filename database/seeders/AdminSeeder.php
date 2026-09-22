@@ -31,6 +31,11 @@ class AdminSeeder extends Seeder
             ['estado' => 1],
         );
 
+        DB::table('estado')->updateOrInsert(
+            ['id_estado' => 2],
+            ['estado' => 0],
+        );
+
         DB::table('rol')->updateOrInsert(
             ['id_rol' => 1],
             ['rol' => 'Administrador'],

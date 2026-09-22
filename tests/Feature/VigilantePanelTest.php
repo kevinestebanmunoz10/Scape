@@ -121,6 +121,7 @@ class VigilantePanelTest extends TestCase
         $this->post('/login', [
             'documento' => '10000000004',
             'contrasena' => 'vigilante123',
+            'terminos' => '1',
         ])->assertRedirect(route('vigilante.dashboard'));
     }
 

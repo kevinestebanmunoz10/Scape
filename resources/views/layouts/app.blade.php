@@ -84,7 +84,7 @@
                         <li><a href="{{ url('/modulos/equipos') }}" class="footer-link">Gestión de equipos</a></li>
                         <li><a href="{{ url('/modulos/visitantes') }}" class="footer-link">Visitantes</a></li>
                         <li><a href="{{ url('/modulos/reportes') }}" class="footer-link">Reportes</a></li>
-                        <li><a href="#" class="footer-link">Legal</a></li>
+                        <li><a href="{{ asset('storage/pdf/legal.pdf') }}" class="footer-link" target="_blank">Legal</a></li>
                         <li><a href="{{ asset('storage/pdf/privacidad.pdf') }}" class="footer-link" target="_blank">Política de tratamiento y protección de datos personales</a></li>
                     </ul>
                 </div>
@@ -95,7 +95,6 @@
                     <p class="text-secondary-custom small mb-md-0">&copy;2026 SCAPE Software. Todos los derechos reservados.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="#" class="footer-link small me-3">Política de privacidad</a>
                     <a href="#" class="footer-link small">Términos de uso</a>
                 </div>
             </div>

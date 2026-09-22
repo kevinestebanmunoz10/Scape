@@ -471,6 +471,23 @@ section {
 }
 .planes-hero h1 { color: #fff; font-weight: 800; margin-bottom: 1rem; }
 .planes-hero p { color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+.btn-plan-hero {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 13px 32px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #1e40af, #0284c7);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.btn-plan-hero:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(2,132,199,0.4);
+    color: #fff;
+}
 
 /* ============================================================
    F.A.Q.

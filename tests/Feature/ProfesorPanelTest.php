@@ -96,6 +96,7 @@ class ProfesorPanelTest extends TestCase
         $this->post('/login', [
             'documento' => '10000000002',
             'contrasena' => 'profesor123',
+            'terminos' => '1',
         ])->assertRedirect(route('profesor.dashboard'));
     }
 
@@ -106,6 +107,7 @@ class ProfesorPanelTest extends TestCase
         $this->post('/login', [
             'documento' => '10000000001',
             'contrasena' => 'admin123',
+            'terminos' => '1',
         ])->assertRedirect(route('dashboard'));
     }
 
