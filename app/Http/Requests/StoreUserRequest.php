@@ -26,6 +26,7 @@ class StoreUserRequest extends FormRequest
             'Telefono' => ['required', 'string', 'max:20'], // Teléfono obligatorio, texto y máximo 20 caracteres
             'QR' => ['nullable', 'string', 'max:255'], // QR opcional, texto y máximo 255 caracteres
             'Contrasena' => ['required', 'string', 'min:6', 'max:255'], // Contraseña obligatoria, mínimo 6 y máximo 255 caracteres
+            'Contrasena_confirmation' => ['required_with:Contrasena', 'same:Contrasena'], // Confirmación obligatoria si hay contraseña y debe coincidir con ella
             'id_rol' => ['required', 'integer', 'exists:rol,id_rol'], // Rol obligatorio, entero y existente en la tabla rol
             'id_Estado' => ['required', 'integer', 'exists:estado,id_estado'], // Estado obligatorio, entero y existente en la tabla estado
             'cod_postal' => ['required', 'integer', 'exists:ciudad,cod_Postal'], // Código postal obligatorio, entero y existente en la tabla ciudad

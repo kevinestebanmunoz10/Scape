@@ -95,6 +95,15 @@ class AdminPanelTest extends TestCase
             ->assertDontSee('nav-link');
     }
 
+    public function test_admin_create_user_form_renders_password_hint(): void
+    {
+        $this->actingAs($this->admin())
+            ->get(route('admin.usuarios.create'))
+            ->assertOk()
+            ->assertSee('Mínimo 6 caracteres.')
+            ->assertDontSee('M&amp;iacute;nimo', false);
+    }
+
     public function test_public_navbar_keeps_navigation_links(): void
     {
         $this->get('/')

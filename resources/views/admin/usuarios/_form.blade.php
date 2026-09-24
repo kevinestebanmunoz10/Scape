@@ -106,15 +106,27 @@
         @error('QR')<span class="form-error">{{ $message }}</span>@enderror
     </div>
 
-    {{-- Campo: contraseña (ocupa el ancho completo de la cuadrícula) --}}
-    <div class="form-field full">
+    {{-- Campo: contraseña (lado izquierdo de la cuadrícula) --}}
+    <div class="form-field">
         {{-- Etiqueta del campo --}}
         <label for="Contrasena">Contrase&ntilde;a</label>
         {{-- Solo es obligatoria en alta; en edición se puede dejar en blanco --}}
         <input type="password" id="Contrasena" name="Contrasena" autocomplete="new-password" @required(! $usuario)>
         {{-- Ayuda contextual según se trate de alta o de edición --}}
-        <span class="form-hint">{{ $usuario ? 'D&eacute;jala en blanco para conservar la contrase&ntilde;a actual.' : 'M&iacute;nimo 6 caracteres.' }}</span>
+        <span class="form-hint">{{ $usuario ? 'Déjala en blanco para conservar la contraseña actual.' : 'Mínimo 6 caracteres.' }}</span>
         {{-- Muestra el error de validación del campo si existe --}}
         @error('Contrasena')<span class="form-error">{{ $message }}</span>@enderror
+    </div>
+
+    {{-- Campo: confirmar contraseña (lado derecho de la cuadrícula) --}}
+    <div class="form-field">
+        {{-- Etiqueta del campo --}}
+        <label for="Contrasena_confirmation">Confirmar contrase&ntilde;a</label>
+        {{-- Debe coincidir con la contraseña para poder guardar --}}
+        <input type="password" id="Contrasena_confirmation" name="Contrasena_confirmation" autocomplete="new-password" @required(! $usuario)>
+        {{-- Ayuda que indica la condición de coincidencia --}}
+        <span class="form-hint">Debe coincidir con la contrase&ntilde;a.</span>
+        {{-- Muestra el error de validación del campo si existe --}}
+        @error('Contrasena_confirmation')<span class="form-error">{{ $message }}</span>@enderror
     </div>
 </div>

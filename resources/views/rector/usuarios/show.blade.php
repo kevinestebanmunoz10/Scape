@@ -12,8 +12,6 @@
             <p class="subtitle">Documento {{ $usuario->Documento }}</p>
         </div>
         <div class="page-header-actions">
-            {{-- Enlace para editar el usuario --}}
-            <a href="{{ route('rector.usuarios.edit', $usuario) }}" class="btn btn-primary">Editar</a>
             {{-- Enlace para regresar al listado --}}
             <a href="{{ route('rector.usuarios.index') }}" class="btn btn-ghost">Volver</a>
         </div>

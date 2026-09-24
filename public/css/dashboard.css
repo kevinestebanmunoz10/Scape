@@ -119,6 +119,8 @@ h1.title { font-size:34px; font-weight:700; }
 .panel {
   background:#131c34; border-radius:14px; padding:26px 28px;
 }
+/* Separación vertical entre paneles apilados */
+.panel + .panel { margin-top:20px; }
 /* Encabezado de cada panel */
 .panel-header {
   display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px;
@@ -135,16 +137,24 @@ table { width:100%; border-collapse:collapse; } /* elimina espacios entre celdas
 /* Celda de cabecera de tabla */
 th {
   text-align:left; font-size:13px; color:#8891a3; font-weight:600;
-  padding-bottom:12px; border-bottom:1px solid #232d4a; /* separador inferior */
+  padding:0 14px 12px; border-bottom:1px solid #232d4a; /* separador inferior */
 }
 /* Celda normal de tabla */
-td { padding:15px 0; font-size:14px; color:#dfe3ec; }
+td { padding:15px 14px; font-size:14px; color:#dfe3ec; }
+/* Primera columna sin margen izquierdo */
+th:first-child, td:first-child { padding-left:0; }
+/* Última columna sin margen derecho */
+th:last-child, td:last-child { padding-right:0; }
 /* Fila del cuerpo de la tabla con separador inferior */
-tbody tr { border-bottom:1px solid #1c2540; }
+tbody tr { border-bottom:1px solid #1c2540; transition:background .15s ease; }
+/* Hover de las filas para resaltar al pasar el cursor */
+tbody tr:hover { background:rgba(74,144,226,.06); }
 /* Elimina el separador de la última fila */
 tbody tr:last-child { border-bottom:none; }
 /* Colores atenuados para las columnas 2 y 3 */
 td:nth-child(2), td:nth-child(3) { color:#8891a3; }
+/* Celda de descripción: ancho máximo con texto que envuelve */
+.desc-cell { max-width:280px; white-space:normal; color:#dfe3ec; }
 
 /* Lista vertical de préstamos/recientes */
 .prestamos-list { display:flex; flex-direction:column; }
@@ -209,6 +219,33 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 /* Hover del enlace para limpiar filtros */
 .filter-clear:hover { color:#fff; }
 
+/* Pestañas para alternar entre las vistas del módulo de accesos */
+.access-tabs {
+  display:inline-flex; gap:6px; flex-wrap:wrap;
+  background:#1a2540; padding:5px; border-radius:12px; margin-bottom:22px;
+}
+/* Item de pestaña (enlace con icono y etiqueta) */
+.access-tabs a {
+  display:inline-flex; align-items:center; gap:9px;
+  padding:10px 18px; border-radius:9px;
+  color:#8891a3; font-size:14px; font-weight:600;
+  text-decoration:none; transition:background .15s ease,color .15s ease;
+}
+/* Icono dentro de la pestaña */
+.access-tabs a svg { width:16px; height:16px; stroke:currentColor; flex-shrink:0; }
+/* Hover de las pestañas no activas */
+.access-tabs a:hover { background:#223052; color:#e5e9f0; }
+/* Pestaña activa resaltada en azul */
+.access-tabs a.active {
+  background:#4a90e2; color:#fff;
+  box-shadow:0 2px 10px rgba(74,144,226,.4); /* resalta la vista actual */
+}
+
+/* Foco visible en los campos de filtro para mejor interacción */
+.filter-select:focus, .filter-input:focus {
+  outline:2px solid rgba(74,144,226,.45); outline-offset:1px;
+}
+
 /* Píldora con el tipo de registro */
 .tipo-pill {
   display:inline-block; padding:3px 10px; border-radius:999px; /* píldora */
@@ -220,6 +257,8 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 .estado-dentro { background:rgba(46,204,113,0.15); color:#2ecc71; }
 /* Estado "fuera" en rojo */
 .estado-fuera { background:rgba(231,76,60,0.15); color:#e74c3c; }
+/* Estado "pendiente" en ámbar */
+.estado-pendiente { background:rgba(243,156,18,0.15); color:#f5b041; }
 
 /* Contenedor de la paginación */
 .pagination-wrap { margin-top:18px; }
@@ -345,6 +384,9 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
   .stats-grid { grid-template-columns:1fr; } /* una sola columna de estadísticas */
   .header-row { justify-content:flex-start; flex-wrap:wrap; gap:10px; }
   .date-filter { font-size:13px; flex-wrap:wrap; }
+  /* Las pestañas de accesos ocupan todo el ancho y reparten los ítems */
+  .access-tabs { width:100%; }
+  .access-tabs a { flex:1; justify-content:center; }
 }
 
 /* Encabezado genérico de página interna */
@@ -470,14 +512,16 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 .form-field.full { grid-column:1 / -1; }
 /* Etiqueta del campo del formulario */
 .form-field label { font-size:13px; color:#8891a3; font-weight:600; }
-/* Inputs y selects de los formularios */
-.form-field input, .form-field select {
+/* Inputs, selects y áreas de texto de los formularios */
+.form-field input, .form-field select, .form-field textarea {
   width:100%; background:#0f1830; border:1px solid #232d4a; border-radius:9px;
   padding:11px 13px; color:#e8ebf1; font-family:inherit; font-size:14px;
   outline:none; color-scheme:dark;
 }
 /* Resalta el borde azul al enfocar un campo */
-.form-field input:focus, .form-field select:focus { border-color:#4a90e2; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color:#4a90e2; }
+/* Áreas de texto redimensionables hacia abajo */
+.form-field textarea { resize:vertical; min-height:96px; line-height:1.5; }
 /* Campos deshabilitados: atenuados e intransitables */
 .form-field input:disabled { opacity:.6; cursor:not-allowed; }
 /* Select con cursor de puntero */
@@ -517,6 +561,13 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 /* Alerta de error (rojo) */
 .alert-error { background:rgba(231,76,60,.12); border-color:rgba(231,76,60,.3); color:#e74c3c; }
 
+/* Catálogo de marcas y tipos de equipo */
+.catalogos-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; align-items:start; } /* dos columnas */
+/* Título interno de cada panel del catálogo */
+.catalogos-title { font-size:16px; font-weight:700; color:#e8ebf1; margin:0 0 16px; }
+/* Formulario de alta de catálogo con separación inferior */
+.catalogos-form { display:flex; flex-direction:column; gap:14px; margin-bottom:22px; padding-bottom:20px; border-bottom:1px solid #1c2540; }
+
 /* Media query: pantallas de hasta 700px */
 @media (max-width:700px) {
   .form-grid { grid-template-columns:1fr; } /* formularios en una sola columna */
@@ -524,4 +575,5 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
   .page-header-actions { flex-wrap:wrap; width:100%; } /* acciones apilables */
   .search-form { flex:1; } /* el buscador ocupa el espacio disponible */
   .search-form input[type="text"] { min-width:0; flex:1; } /* el campo se adapta al ancho */
+  .catalogos-grid { grid-template-columns:1fr; } /* catálogos en una sola columna */
 }

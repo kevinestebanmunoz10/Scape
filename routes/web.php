@@ -4,9 +4,10 @@ use App\Http\Controllers\AccesoController; // Controlador que gestiona el report
 use App\Http\Controllers\DashboardController; // Controlador que gestiona el panel del administrador
 use App\Http\Controllers\EquipoController; // Controlador que gestiona los equipos
 use App\Http\Controllers\PasswordResetController; // Controlador que gestiona el restablecimiento de contraseña
-use App\Http\Controllers\Rector\UsuariosController; // Controlador del rector para gestionar usuarios
-use App\Http\Controllers\RegistroIngresoController; // Controlador que gestiona el registro de entradas
-use App\Http\Controllers\RegistroSalidaController; // Controlador que gestiona el registro de salidas
+use App\Http\Controllers\PermisoController; // Controlador del rector para gestionar usuarios
+use App\Http\Controllers\Rector\UsuariosController; // Controlador que gestiona el registro de entradas
+use App\Http\Controllers\RegistroIngresoController; // Controlador que gestiona el registro de salidas
+use App\Http\Controllers\RegistroSalidaController; // Controlador que gestiona los permisos de salida
 use App\Http\Controllers\UserController; // Controlador que gestiona los usuarios
 use Illuminate\Http\Request; // Clase base para manejar la petición HTTP
 use Illuminate\Support\Facades\Auth; // Fachada para la autenticación de usuarios
@@ -84,6 +85,10 @@ Route::get('/admin/accesos', [AccesoController::class, 'index']) // Define la ru
     ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
     ->name('admin.accesos'); // Asigna el nombre 'admin.accesos' a esta ruta
 
+Route::get('/admin/accesos/equipos', [AccesoController::class, 'equipos']) // Define la ruta del reporte de accesos de equipos
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.accesos.equipos'); // Asigna el nombre 'admin.accesos.equipos' a esta ruta
+
 Route::get('/admin/perfil', function () { // Define la ruta del perfil del administrador
     $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol'); // Consulta el nombre del rol del usuario autenticado
 
@@ -99,6 +104,54 @@ Route::resource('admin/usuarios', UserController::class) // Define las rutas CRU
 Route::post('admin/usuarios/{usuario}/activar', [UserController::class, 'activar']) // Define la ruta para reactivar un usuario
     ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
     ->name('admin.usuarios.activar'); // Asigna el nombre 'admin.usuarios.activar' a esta ruta
+
+Route::get('admin/equipos/catalogos', [EquipoController::class, 'catalogos']) // Define la ruta del catálogo de marcas y tipos
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.equipos.catalogos'); // Asigna el nombre 'admin.equipos.catalogos' a esta ruta
+
+Route::post('admin/equipos/catalogos/marcas', [EquipoController::class, 'storeMarca']) // Define la ruta para registrar una marca
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.equipos.catalogos.marcas.store'); // Asigna el nombre de la ruta de registro de marcas
+
+Route::delete('admin/equipos/catalogos/marcas/{marca}', [EquipoController::class, 'destroyMarca']) // Define la ruta para eliminar una marca
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.equipos.catalogos.marcas.destroy'); // Asigna el nombre de la ruta de eliminación de marcas
+
+Route::post('admin/equipos/catalogos/tipos', [EquipoController::class, 'storeTipo']) // Define la ruta para registrar un tipo de equipo
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.equipos.catalogos.tipos.store'); // Asigna el nombre de la ruta de registro de tipos
+
+Route::delete('admin/equipos/catalogos/tipos/{tipo}', [EquipoController::class, 'destroyTipo']) // Define la ruta para eliminar un tipo de equipo
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.equipos.catalogos.tipos.destroy'); // Asigna el nombre de la ruta de eliminación de tipos
+
+Route::get('admin/permisos', [PermisoController::class, 'index']) // Define la ruta de la vista de permisos de salida
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos'); // Asigna el nombre 'admin.permisos' a esta ruta
+
+Route::get('admin/permisos/tipos', [PermisoController::class, 'tipos']) // Define la ruta del catálogo de tipos de permiso
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos.tipos'); // Asigna el nombre 'admin.permisos.tipos' a esta ruta
+
+Route::post('admin/permisos/tipos', [PermisoController::class, 'storeTipo']) // Define la ruta para registrar un tipo de permiso
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos.tipos.store'); // Asigna el nombre de la ruta de registro de tipos de permiso
+
+Route::delete('admin/permisos/tipos/{tipoPermiso}', [PermisoController::class, 'destroyTipo']) // Define la ruta para eliminar un tipo de permiso
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos.tipos.destroy'); // Asigna el nombre de la ruta de eliminación de tipos de permiso
+
+Route::get('admin/permisos/{permiso}/edit', [PermisoController::class, 'edit']) // Define la ruta del formulario de edición de un permiso
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos.edit'); // Asigna el nombre 'admin.permisos.edit' a esta ruta
+
+Route::put('admin/permisos/{permiso}', [PermisoController::class, 'update']) // Define la ruta para actualizar un permiso
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos.update'); // Asigna el nombre 'admin.permisos.update' a esta ruta
+
+Route::delete('admin/permisos/{permiso}', [PermisoController::class, 'destroy']) // Define la ruta para eliminar un permiso
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.permisos.destroy'); // Asigna el nombre 'admin.permisos.destroy' a esta ruta
 
 Route::resource('admin/equipos', EquipoController::class) // Define las rutas CRUD de equipos del administrador
     ->parameters(['equipos' => 'equipo']) // Renombra el parámetro de ruta a 'equipo'
@@ -126,10 +179,13 @@ Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->
 Route::prefix('rector')->name('rector.')->middleware(['auth', 'rector'])->group(function () { // Agrupa las rutas del rector con prefijo, nombres y middleware comunes
     Route::view('dashboard', 'rector.dashboard')->name('dashboard'); // Ruta de vista del panel del rector
 
-    Route::resource('usuarios', UsuariosController::class) // Define las rutas CRUD de usuarios del rector
+    Route::post('permisos', [PermisoController::class, 'store']) // Define la ruta para registrar un permiso de salida
+        ->name('permisos.store'); // Asigna el nombre 'rector.permisos.store' a esta ruta
+
+    Route::resource('usuarios', UsuariosController::class) // Define las rutas de consulta de usuarios del rector
         ->parameters(['usuarios' => 'usuario']) // Renombra el parámetro de ruta a 'usuario'
         ->names('usuarios') // Prefija los nombres de todas las rutas con 'usuarios'
-        ->except('destroy'); // Excluye la ruta de eliminación
+        ->only(['index', 'show']); // El rector solo puede consultar usuarios
 
     Route::get('perfil', function () { // Define la ruta del perfil del rector
         $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol'); // Consulta el nombre del rol del usuario autenticado

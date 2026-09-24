@@ -19,21 +19,6 @@ class RectorUsuariosTest extends TestCase
         return User::where('Documento', 10000000003)->firstOrFail();
     }
 
-    private function nuevoUsuario(): array
-    {
-        return [
-            'Documento' => 10000000099,
-            'Nom_usua' => 'Usuario Nuevo',
-            'email' => 'usuario.nuevo@scape.edu.co',
-            'Telefono' => '3111111111',
-            'QR' => 'QR-NUEVO',
-            'Contrasena' => 'secreto123',
-            'id_rol' => 2,
-            'id_Estado' => 1,
-            'cod_postal' => 730001,
-        ];
-    }
-
     public function test_guest_is_redirected_from_rector_users_index(): void
     {
         $this->get('/rector/usuarios')->assertRedirect('/login');
@@ -46,7 +31,7 @@ class RectorUsuariosTest extends TestCase
         $this->actingAs($rector)
             ->get('/rector/usuarios')
             ->assertOk()
-            ->assertSee('Nuevo usuario')
+            ->assertDontSee('Nuevo usuario')
             ->assertSee($rector->Nom_usua)
             ->assertSee($rector->email);
     }
@@ -63,38 +48,6 @@ class RectorUsuariosTest extends TestCase
             ->assertDontSee($rector->Documento);
     }
 
-    public function test_rector_can_create_a_user(): void
-    {
-        $this->seed(ProfesorSeeder::class);
-        $rector = $this->rector();
-
-        $this->actingAs($rector)
-            ->post('/rector/usuarios', $this->nuevoUsuario())
-            ->assertRedirect(route('rector.usuarios.index'));
-
-        $this->assertDatabaseHas('usuario', [
-            'Documento' => 10000000099,
-            'Nom_usua' => 'Usuario Nuevo',
-            'email' => 'usuario.nuevo@scape.edu.co',
-        ]);
-    }
-
-    public function test_rector_store_validates_required_fields(): void
-    {
-        $this->actingAs($this->rector())
-            ->post('/rector/usuarios', [])
-            ->assertSessionHasErrors([
-                'Documento',
-                'Nom_usua',
-                'email',
-                'Telefono',
-                'Contrasena',
-                'id_rol',
-                'id_Estado',
-                'cod_postal',
-            ]);
-    }
-
     public function test_rector_can_view_a_user(): void
     {
         $this->seed(ProfesorSeeder::class);
@@ -103,31 +56,42 @@ class RectorUsuariosTest extends TestCase
             ->get('/rector/usuarios/10000000002')
             ->assertOk()
             ->assertSee('Profesor SCAPE')
-            ->assertDontSee('Eliminar usuario');
+            ->assertDontSee('Editar');
     }
 
-    public function test_rector_can_update_a_user(): void
+    public function test_rector_cannot_create_a_user(): void
     {
         $this->seed(ProfesorSeeder::class);
-        $rector = $this->rector();
 
-        $this->actingAs($rector)
-            ->put('/rector/usuarios/10000000002', [
-                'Nom_usua' => 'Profesor Actualizado',
-                'email' => 'profesor@scape.edu.co',
-                'Telefono' => '3000000001',
-                'QR' => 'QR-PROFESOR',
-                'Contrasena' => '',
-                'id_rol' => 2,
-                'id_Estado' => 1,
-                'cod_postal' => 730001,
+        $this->actingAs($this->rector())
+            ->post('/rector/usuarios', [
+                'Documento' => 10000000099,
+                'Nom_usua' => 'Usuario Nuevo',
+                'email' => 'usuario.nuevo@scape.edu.co',
             ])
-            ->assertRedirect(route('rector.usuarios.index'));
+            ->assertMethodNotAllowed();
+    }
 
-        $this->assertDatabaseHas('usuario', [
-            'Documento' => 10000000002,
-            'Nom_usua' => 'Profesor Actualizado',
-        ]);
+    public function test_rector_cannot_update_a_user(): void
+    {
+        $this->seed(ProfesorSeeder::class);
+
+        $this->actingAs($this->rector())
+            ->put('/rector/usuarios/10000000002', ['Nom_usua' => 'Profesor Actualizado'])
+            ->assertMethodNotAllowed();
+    }
+
+    public function test_rector_has_no_create_or_edit_routes(): void
+    {
+        $this->seed(ProfesorSeeder::class);
+
+        $this->actingAs($this->rector())
+            ->get('/rector/usuarios/create')
+            ->assertNotFound();
+
+        $this->actingAs($this->rector())
+            ->get('/rector/usuarios/10000000002/edit')
+            ->assertNotFound();
     }
 
     public function test_rector_has_no_delete_route(): void

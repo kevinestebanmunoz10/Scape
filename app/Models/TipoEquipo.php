@@ -16,6 +16,8 @@ class TipoEquipo extends Model
 
     public $timestamps = false; // Desactiva las columnas created_at y updated_at
 
+    protected $fillable = ['tipo']; // Campo permitido para asignación masiva
+
     // Relación con los equipos de este tipo
     public function equipos()
     {

@@ -49,7 +49,7 @@
                     Usuarios
                 </a>
                 {{-- Acceso al módulo de accesos; activo solo en la ruta admin.accesos --}}
-                <a href="{{ route('admin.accesos') }}" class="{{ request()->routeIs('admin.accesos') ? 'active' : '' }}">
+                <a href="{{ route('admin.accesos') }}" class="{{ request()->routeIs('admin.accesos*') ? 'active' : '' }}">
                     {{-- Ícono de registros de acceso --}}
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="4" rx="1"/><rect x="3" y="14" width="18" height="4" rx="1"/></svg>
                     Accesos
@@ -60,8 +60,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                     Equipos
                 </a>
-                {{-- Enlace de permisos (aún sin destino definido) --}}
-                <a href="#">
+                {{-- Enlace de permisos de salida; activo en cualquier ruta admin.permisos.* --}}
+                <a href="{{ route('admin.permisos') }}" class="{{ request()->routeIs('admin.permisos*') ? 'active' : '' }}">
                     {{-- Ícono de permisos --}}
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7a3 3 0 1 1 0 6"/><path d="M15 11a3 3 0 1 1 0 6"/><path d="M6 20l12-12"/></svg>
                     Permisos

@@ -31,6 +31,12 @@
                 {{-- Botón que aplica la búsqueda --}}
                 <button type="submit" class="date-apply">Buscar</button>
             </form>
+            {{-- Enlace para gestionar las marcas y los tipos de equipo --}}
+            <a href="{{ route('admin.equipos.catalogos') }}" class="btn btn-ghost">
+                {{-- Ícono de etiqueta/catálogo --}}
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 12 22 2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+                Crear nuevo tipo
+            </a>
             {{-- Enlace para crear un nuevo equipo --}}
             <a href="{{ route('admin.equipos.create') }}" class="btn btn-primary">
                 {{-- Ícono de signo más --}}

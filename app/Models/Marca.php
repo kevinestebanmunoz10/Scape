@@ -16,6 +16,8 @@ class Marca extends Model
 
     public $timestamps = false; // Desactiva las columnas created_at y updated_at
 
+    protected $fillable = ['marca']; // Campo permitido para asignación masiva
+
     // Relación con los equipos de esta marca
     public function equipos()
     {

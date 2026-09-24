@@ -106,6 +106,66 @@ class EquipoController extends Controller
             ->with('status', 'Equipo eliminado correctamente.'); // Con un mensaje de éxito en la sesión
     }
 
+    public function catalogos(): View
+    {
+        return view('admin.equipos.catalogos', [ // Muestra la vista de catálogos
+            'marcas' => Marca::orderBy('marca')->get(), // Todas las marcas ordenadas por nombre
+            'tipos' => TipoEquipo::orderBy('tipo')->get(), // Todos los tipos de equipo ordenados por nombre
+        ]);
+    }
+
+    public function storeMarca(Request $request): RedirectResponse
+    {
+        $request->validate(['marca' => ['required', 'string', 'max:50']]); // Valida el nombre de la nueva marca
+
+        Marca::create(['marca' => $request->marca]); // Registra la marca en la base de datos
+
+        return redirect() // Devuelve una redirección
+            ->route('admin.equipos.catalogos') // Hacia el catálogo de marcas y tipos
+            ->with('status', 'Marca agregada correctamente.'); // Con un mensaje de éxito en la sesión
+    }
+
+    public function destroyMarca(Marca $marca): RedirectResponse
+    {
+        if ($marca->equipos()->exists()) { // Verifica si hay equipos que usan esta marca
+            return redirect() // Devuelve una redirección
+                ->route('admin.equipos.catalogos') // Hacia el catálogo
+                ->with('error', 'No puedes eliminar una marca que est&aacute; en uso.'); // Con un mensaje de error en la sesión
+        }
+
+        $marca->delete(); // Elimina la marca de la base de datos
+
+        return redirect() // Devuelve una redirección
+            ->route('admin.equipos.catalogos') // Hacia el catálogo
+            ->with('status', 'Marca eliminada correctamente.'); // Con un mensaje de éxito en la sesión
+    }
+
+    public function storeTipo(Request $request): RedirectResponse
+    {
+        $request->validate(['tipo' => ['required', 'string', 'max:50']]); // Valida el nombre del nuevo tipo de equipo
+
+        TipoEquipo::create(['tipo' => $request->tipo]); // Registra el tipo en la base de datos
+
+        return redirect() // Devuelve una redirección
+            ->route('admin.equipos.catalogos') // Hacia el catálogo de marcas y tipos
+            ->with('status', 'Tipo de equipo agregado correctamente.'); // Con un mensaje de éxito en la sesión
+    }
+
+    public function destroyTipo(TipoEquipo $tipo): RedirectResponse
+    {
+        if ($tipo->equipos()->exists()) { // Verifica si hay equipos que usan este tipo
+            return redirect() // Devuelve una redirección
+                ->route('admin.equipos.catalogos') // Hacia el catálogo
+                ->with('error', 'No puedes eliminar un tipo de equipo que est&aacute; en uso.'); // Con un mensaje de error en la sesión
+        }
+
+        $tipo->delete(); // Elimina el tipo de la base de datos
+
+        return redirect() // Devuelve una redirección
+            ->route('admin.equipos.catalogos') // Hacia el catálogo
+            ->with('status', 'Tipo de equipo eliminado correctamente.'); // Con un mensaje de éxito en la sesión
+    }
+
     private function formData(): array
     {
         return [

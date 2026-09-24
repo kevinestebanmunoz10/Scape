@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ProfesorSeeder::class, // Llena los datos del profesor
             RectorSeeder::class, // Llena los datos del rector
             VigilanteSeeder::class, // Llena los datos del vigilante
+            TipoPermisoSeeder::class, // Llena los tipos de permiso de salida por defecto
         ]);
     }
 }

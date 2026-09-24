@@ -8,6 +8,7 @@ use Illuminate\Http\Request; // Clase base para manejar la petición HTTP
 use Illuminate\Pagination\LengthAwarePaginator; // Paginador manual para colecciones
 use Illuminate\Support\Collection; // Colección de datos para trabajar con arrays
 use Illuminate\Support\Facades\DB; // Fachada para ejecutar consultas a la base de datos
+use Illuminate\View\View; // Clase de respuesta para las vistas
 
 class AccesoController extends Controller
 {
@@ -73,6 +74,59 @@ class AccesoController extends Controller
             'entradas' => $entradas, // El número de entradas (dentro)
             'salidas' => $salidas, // El número de salidas
             'visitantes' => $visitantes, // El número de visitantes
+        ]);
+    }
+
+    public function equipos(Request $request): View
+    {
+        $desde = ($request->date('desde') ?? now()->startOfMonth())->startOfDay(); // Fecha inicial del filtro, por defecto el primer día del mes al inicio del día
+        $hasta = $request->date('hasta') ?? now(); // Fecha final del filtro, por defecto la fecha actual
+
+        if ($desde->greaterThan($hasta)) { // Verifica si la fecha inicial es mayor que la final
+            [$desde, $hasta] = [$hasta->copy()->startOfDay(), $desde->copy()]; // Intercambia los valores para corregir el rango
+        }
+
+        $hastaFin = $hasta->copy()->endOfDay(); // Convierte la fecha final al último instante del día
+        $buscar = trim($request->string('buscar')->toString()); // Obtiene y limpia el término de búsqueda
+
+        $consulta = DB::table('acceso_equi') // Consulta la tabla de accesos de equipos
+            ->leftJoin('equipo', 'acceso_equi.serial_equi', '=', 'equipo.serial_equi') // Une la tabla de equipos por serial
+            ->leftJoin('usuario', 'acceso_equi.Documento', '=', 'usuario.Documento') // Une la tabla de usuarios por documento
+            ->leftJoin('marca', 'equipo.id_Marca', '=', 'marca.id_marca') // Une la tabla de marcas por identificador
+            ->leftJoin('tipo_equipo', 'equipo.id_t_equip', '=', 'tipo_equipo.id_t_equip') // Une la tabla de tipos de equipo por identificador
+            ->whereBetween('acceso_equi.f_entrada', [$desde, $hastaFin]); // Filtra los ingresos dentro del rango de fechas
+
+        if ($buscar !== '') { // Verifica si hay un término de búsqueda
+            $consulta->where('acceso_equi.serial_equi', 'like', '%'.$buscar.'%'); // Filtra los accesos cuyo serial contiene el término
+        }
+
+        $totalAccesos = (clone $consulta)->count(); // Cuenta el total de accesos de equipos
+        $dentro = (clone $consulta)->whereNull('acceso_equi.f_salida')->count(); // Cuenta los equipos que aún están dentro (sin salida)
+        $salidas = $totalAccesos - $dentro; // Calcula el total de salidas restando las que están dentro
+        $equiposUnicos = (clone $consulta)->distinct()->count('acceso_equi.serial_equi'); // Cuenta los equipos distintos que han accedido
+
+        $equipos = $consulta->select( // Selecciona los campos que se van a mostrar
+            'acceso_equi.serial_equi as serial', // El serial del equipo
+            'acceso_equi.f_entrada as f_entrada', // La fecha de entrada del equipo
+            'acceso_equi.f_salida as f_salida', // La fecha de salida del equipo
+            'tipo_equipo.tipo as tipo', // El tipo de equipo
+            'marca.marca as marca', // La marca del equipo
+            'equipo.Color as color', // El color del equipo
+            'usuario.Nom_usua as nombre', // El nombre del responsable del acceso
+        )
+            ->orderByDesc('acceso_equi.f_entrada') // Ordena los accesos por fecha de entrada descendente
+            ->paginate(10) // Pagina los resultados de a diez por página
+            ->withQueryString(); // Conserva los filtros de la URL al paginar
+
+        return view('admin.accesos_equipos', [ // Muestra la vista de accesos de equipos con los datos
+            'equipos' => $equipos, // Los accesos de equipos paginados
+            'desde' => $desde, // La fecha inicial del filtro
+            'hasta' => $hasta, // La fecha final del filtro
+            'buscar' => $buscar, // El término de búsqueda
+            'totalAccesos' => $totalAccesos, // El total de accesos calculado
+            'dentro' => $dentro, // El número de equipos dentro
+            'salidas' => $salidas, // El número de equipos fuera
+            'equiposUnicos' => $equiposUnicos, // El número de equipos distintos
         ]);
     }
 

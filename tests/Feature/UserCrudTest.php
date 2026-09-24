@@ -35,6 +35,7 @@ class UserCrudTest extends TestCase
             'Telefono' => '3111111111',
             'QR' => 'QR-NUEVO',
             'Contrasena' => 'secreto123',
+            'Contrasena_confirmation' => 'secreto123',
             'id_rol' => 2,
             'id_Estado' => 1,
             'cod_postal' => 730001,
@@ -115,6 +116,18 @@ class UserCrudTest extends TestCase
                 'id_Estado',
                 'cod_postal',
             ]);
+    }
+
+    public function test_store_rejects_a_mismatched_password_confirmation(): void
+    {
+        $datos = $this->nuevoUsuario();
+        $datos['Contrasena_confirmation'] = 'otra12345';
+
+        $this->actingAs($this->admin())
+            ->post('/admin/usuarios', $datos)
+            ->assertSessionHasErrors('Contrasena_confirmation');
+
+        $this->assertDatabaseMissing('usuario', ['Documento' => 10000000099]);
     }
 
     public function test_admin_can_view_a_user(): void
