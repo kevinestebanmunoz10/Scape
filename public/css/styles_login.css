@@ -2,38 +2,42 @@
    styles_login.css — Estilos del login acordes al index (SCAPE)
    ============================================================ */
 
+/* Contenedor que centra el formulario de login en la pantalla */
 .login-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 88px);
+    justify-content: center; /* centra horizontalmente */
+    align-items: center; /* centra verticalmente */
+    min-height: calc(100vh - 88px); /* alto de la ventana menos la navbar */
     width: 100%;
     padding: 20px;
 }
 
+/* Caja principal del formulario de login */
 .login-box {
     position: relative;
     width: 100%;
-    max-width: 420px;
-    background: rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 420px; /* ancho máximo */
+    background: rgba(0, 0, 0, 0.15); /* fondo translúcido oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* borde sutil claro */
     border-radius: 16px;
     padding: 48px 40px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3); /* sombra difusa */
+    backdrop-filter: blur(8px); /* desenfoque del fondo */
+    -webkit-backdrop-filter: blur(8px); /* compatibilidad con Safari */
 }
 
+/* Título "Iniciar sesión" dentro de la caja */
 .login-box h2 {
     font-family: 'Product Sans', sans-serif;
-    font-weight: 900;
+    font-weight: 900; /* muy grueso */
     font-size: 2rem;
     color: #ffffff;
     text-align: center;
     margin-bottom: 6px;
-    text-transform: uppercase;
+    text-transform: uppercase; /* texto en mayúsculas */
 }
 
+/* Subtítulo bajo el título del login */
 .login-subtitle {
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
@@ -41,121 +45,135 @@
     margin-bottom: 24px;
 }
 
+/* Alerta de error mostrada dentro del login */
 .login-alert {
     font-size: 0.9rem;
     text-align: center;
 }
 
+/* Formulario de login a ancho completo */
 .login-box form {
     width: 100%;
 }
 
+/* Contenedor de cada campo de entrada con borde inferior */
 .input-box {
     position: relative;
     width: 100%;
     margin: 28px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* línea bajo el campo */
 }
 
+/* Etiqueta flotante sobre el campo de entrada */
 .input-box label {
     position: absolute;
     top: 50%;
     left: 5px;
-    transform: translateY(-50%);
+    transform: translateY(-50%); /* centra verticalmente la etiqueta */
     font-size: 1em;
     color: rgba(255, 255, 255, 0.8);
-    pointer-events: none;
-    transition: 0.3s;
+    pointer-events: none; /* no bloquea los clics en el input */
+    transition: 0.3s; /* anima el desplazamiento de la etiqueta */
 }
 
+/* La etiqueta se desplaza hacia arriba al enfocar o escribir */
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
-    top: -5px;
-    font-size: 0.8em;
-    color: #00b4ff;
+    top: -5px; /* sube la etiqueta */
+    font-size: 0.8em; /* se reduce su tamaño */
+    color: #00b4ff; /* cambia a azul cian */
 }
 
+/* Campo de entrada de texto */
 .input-box input {
     width: 100%;
     height: 48px;
-    background: transparent;
+    background: transparent; /* fondo transparente */
     border: none;
-    outline: none;
+    outline: none; /* sin contorno de foco */
     font-size: 1em;
     color: #ffffff;
-    padding: 0 35px 0 5px;
+    padding: 0 35px 0 5px; /* deja espacio a la derecha para el icono */
     font-family: 'Product Sans', sans-serif;
 }
 
+/* Icono dentro de cada campo de entrada */
 .input-box .icon {
     position: absolute;
-    right: 8px;
+    right: 8px; /* anclado a la derecha */
     top: 50%;
     color: #00b4ff;
-    transform: translateY(-50%);
+    transform: translateY(-50%); /* centra verticalmente el icono */
 }
 
 /* ── BOTONES ── */
+/* Botón principal de iniciar sesión */
 .btn-login {
     display: block;
     width: 100%;
     padding: 13px;
     margin-top: 12px;
     margin-bottom: 12px;
-    border-radius: 50px;
+    border-radius: 50px; /* botón tipo píldora */
     border: none;
     cursor: pointer;
     font-family: 'Product Sans', sans-serif;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.02em;
-    background: linear-gradient(90deg, #00b4ff, #007bff);
+    background: linear-gradient(90deg, #00b4ff, #007bff); /* degradado azul horizontal */
     color: #ffffff;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 16px rgba(0, 180, 255, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s; /* anima el hover */
+    box-shadow: 0 4px 16px rgba(0, 180, 255, 0.35); /* sombra azulada */
 }
 
+/* Hover del botón de iniciar sesión */
 .btn-login:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 22px rgba(0, 180, 255, 0.5);
+    transform: scale(1.02); /* se agranda ligeramente */
+    box-shadow: 0 6px 22px rgba(0, 180, 255, 0.5); /* sombra más fuerte */
 }
 
+/* Botón secundario para volver al inicio */
 .btn-back {
     display: block;
     width: 100%;
     padding: 13px;
-    border-radius: 50px;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px; /* botón tipo píldora */
+    border: 1.5px solid rgba(255, 255, 255, 0.4); /* borde blanco translúcido */
     cursor: pointer;
     font-family: 'Product Sans', sans-serif;
     font-size: 14px;
     font-weight: 700;
-    background: transparent;
+    background: transparent; /* sin relleno */
     color: #ffffff;
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s; /* anima el hover */
 }
 
+/* Hover del botón de volver */
 .btn-back:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1); /* relleno blanco tenue */
     transform: scale(1.02);
 }
 
+/* Variante del botón volver usada dentro del login */
 .btn-back--login {
     margin-top: 16px;
 }
 
 /* ── ENLACE RECUPERAR CONTRASEÑA ── */
+/* Contenedor de los enlaces bajo el formulario */
 .login-links {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* apilado vertical */
+    align-items: center; /* centrados horizontalmente */
     gap: 14px;
     margin-top: 4px;
 }
 
+/* Enlace para recuperar la contraseña */
 .forgot-link {
     display: inline-flex;
-    align-items: center;
+    align-items: center; /* centra el icono con el texto */
     gap: 7px;
     font-family: 'Product Sans', sans-serif;
     font-size: 0.9rem;
@@ -165,94 +183,109 @@
     transition: color 0.25s;
 }
 
+/* Icono dentro del enlace de recuperar */
 .forgot-link i {
     font-size: 0.85rem;
     color: #00b4ff;
     transition: color 0.25s;
 }
 
+/* Hover del enlace de recuperar */
 .forgot-link:hover {
     color: #ffffff;
 }
 
+/* Hover del icono del enlace de recuperar */
 .forgot-link:hover i {
     color: #33c4ff;
 }
 
 /* ── CHECKBOX TÉRMINOS Y CONDICIONES ── */
+/* Contenedor del checkbox de términos */
 .terms-checkbox {
     display: flex;
     margin: 4px 2px 0;
 }
 
+/* Etiqueta clicable de los términos y condiciones */
 .terms-label {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start; /* alinea la checkbox con la primera línea */
     gap: 8px;
     cursor: pointer;
     font-family: 'Product Sans', sans-serif;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.75);
     line-height: 1.35;
-    user-select: none;
+    user-select: none; /* evita seleccionar el texto */
 }
 
+/* Checkbox de los términos */
 .terms-label input[type="checkbox"] {
-    flex-shrink: 0;
+    flex-shrink: 0; /* no se encoge */
     width: 16px;
     height: 16px;
     margin-top: 1px;
-    accent-color: #00b4ff;
+    accent-color: #00b4ff; /* color de marcado */
     cursor: pointer;
 }
 
+/* Texto resaltado dentro de los términos */
 .terms-label strong {
     color: #00b4ff;
 }
 
+/* Enlace interno a los términos y condiciones */
 .terms-label a.terms-link {
     color: #00b4ff;
     text-decoration: underline;
     transition: color 0.25s;
 }
 
+/* Hover del enlace a los términos */
 .terms-label a.terms-link:hover {
     color: #33c4ff;
 }
 
 /* ── VALIDACIÓN EN TIEMPO REAL ── */
+/* Mensaje de validación bajo cada campo */
 .validation-feedback {
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.6);
     margin-top: 4px;
-    min-height: 1rem;
+    min-height: 1rem; /* reserva espacio para evitar saltos */
     line-height: 1.3;
 }
 
+/* Mensaje de validación cuando el campo es inválido (rojo) */
 .validation-feedback.invalid {
     color: #ff5252;
 }
 
 /* ── RESPONSIVE ── */
+/* Media query: pantallas de hasta 500px (móviles) */
 @media (max-width: 500px) {
     .login-wrapper {
-        padding: 0;
-        align-items: flex-start;
+        padding: 0; /* sin relleno lateral */
+        align-items: flex-start; /* alinea el contenido arriba */
     }
 
+    /* La caja del login ocupa toda la pantalla */
     .login-box {
         width: 100%;
         max-width: 100%;
         min-height: calc(100vh - 88px);
-        border: none;
-        border-radius: 0;
+        border: none; /* sin borde */
+        border-radius: 0; /* sin esquinas redondeadas */
         padding: 48px 24px;
     }
 
+    /* Título más pequeño en pantallas móviles */
     .login-box h2 {
         font-size: 1.6em;
     }
 
+    /* Reduce el margen de los campos en móvil */
     .input-box {
         margin: 22px 0;
     }

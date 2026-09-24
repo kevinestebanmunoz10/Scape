@@ -1,349 +1,527 @@
+/* Estructura general del panel de control (dashboard) */
 .dashboard-shell {
-  background:#0c1324;
-  color:#e8ebf1;
+  background:#0c1324; /* fondo oscuro del panel */
+  color:#e8ebf1; /* color de texto claro */
   display:flex;
-  align-items:stretch;
-  min-height: calc(100vh - 76px);
-  font-family:'Product Sans',sans-serif;
+  align-items:stretch; /* estira los hijos a la misma altura */
+  min-height: calc(100vh - 76px); /* ocupa el alto de la ventana menos la navbar */
+  font-family:'Product Sans',sans-serif; /* fuente principal */
   font-size:19px;
 }
+/* Fuerza el modelo de caja border-box en todo el dashboard */
 .dashboard-shell * { box-sizing:border-box; }
 
+/* Barra lateral de navegación (sidebar) */
 .sidebar {
-  width:230px;
+  width:230px; /* ancho fijo */
   background:#0c1324;
   padding:28px 22px;
   display:flex;
-  flex-direction:column;
-  flex-shrink:0;
+  flex-direction:column; /* apila los elementos verticalmente */
+  flex-shrink:0; /* evita que se encoja */
 }
+/* Logo del dashboard */
 .logo {
-  display:flex; align-items:center; gap:8px;
+  display:flex; align-items:center; gap:8px; /* icono y texto en fila */
   font-size:24px; font-weight:800; letter-spacing:0.5px; color:#9aa4b8; margin-bottom:44px;
 }
+/* Tamaño del icono (SVG) del logo */
 .logo svg { width:20px; height:20px; }
 
+/* Menú de navegación del sidebar */
 nav.menu { display:flex; flex-direction:column; gap:4px; }
+/* Cada enlace del menú */
 .menu a {
-  display:flex; align-items:center; gap:14px;
+  display:flex; align-items:center; gap:14px; /* icono + texto en fila */
   color:#a7afc2; text-decoration:none; padding:10px 10px; border-radius:8px; font-size:15px;
 }
+/* Iconos SVG de los enlaces del menú */
 .menu a svg { width:18px; height:18px; flex-shrink:0; stroke:#a7afc2; }
+/* Enlace activo (página actual) resaltado */
 .menu a.active { color:#fff; }
+/* Icono del enlace activo en azul */
 .menu a.active svg { stroke:#4a90e2; }
+/* Enlaces del menú al pasar el cursor */
 .menu a:hover { color:#fff; }
 
+/* Etiqueta de la sección "Cuenta" en el sidebar */
 .cuenta-label {
   font-size:11px; letter-spacing:1px; color:#4d5468; margin:34px 0 8px 10px; font-weight:600;
 }
 
+/* Bloque inferior del sidebar: se empuja al fondo */
 .sidebar-bottom { margin-top:auto; }
 
+/* Bloque principal del sidebar con separación superior */
 .sidebar-main { margin-top:28px; }
 
+/* Área principal de contenido a la derecha del sidebar */
 .main { flex:1; padding:30px 44px; }
+/* Barra superior con título y datos del usuario */
 .topbar {
   display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;
 }
+/* Título principal del dashboard */
 h1.title { font-size:34px; font-weight:700; }
+/* Nombre del administrador conectado */
 .admin-name { font-weight:600; font-size:17px; }
 
+/* Fila de encabezado con los filtros de fecha */
 .header-row {
   display:flex; justify-content:flex-end; align-items:center; margin-bottom:22px;
 }
+/* Contenedor del filtro por fecha */
 .date-filter {
   display:flex; align-items:center; gap:10px; color:#8891a3; font-size:14px;
 }
+/* Caja visual del selector de fecha */
 .date-box {
   background:#151f38; padding:9px 16px; border-radius:9px;
   color:#e5e9f0; display:flex; align-items:center; gap:10px; font-size:14px;
 }
+/* Icono del calendario dentro del selector */
 .date-box svg { width:15px; height:15px; opacity:0.6; }
+/* Campo de fecha con fondo transparente */
 .date-box input[type="date"] {
   background:transparent; border:0; outline:none; color:#e5e9f0;
   font-family:inherit; font-size:14px; color-scheme:dark; cursor:pointer;
 }
+/* Separa el icono y el campo del selector */
 .date-box .date-sep { opacity:0.5; }
+/* Botón de aplicar filtro de fecha */
 .date-apply {
   background:#4a90e2; color:#fff; border:0; border-radius:7px;
   padding:7px 14px; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer;
 }
+/* Hover del botón de aplicar fecha */
 .date-apply:hover { background:#3a7bc8; }
 
+/* Cuadrícula de tarjetas de estadísticas */
 .stats-grid {
-  display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:22px;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:22px; /* 4 columnas iguales */
 }
+/* Tarjeta individual de estadística */
 .stat-card {
   background:#131c34; border-radius:14px; padding:22px 24px;
 }
+/* Título de la tarjeta de estadística */
 .stat-card h3 { font-size:15px; font-weight:600; color:#c3c9d8; margin-bottom:22px; }
+/* Valor numérico grande de la estadística */
 .stat-card .value { font-size:36px; font-weight:700; margin-bottom:12px; line-height:1; }
+/* Subtítulo de la estadística */
 .stat-card .sub { font-size:13px; color:#8891a3; }
 
+/* Cuadrícula inferior con tablas y paneles */
 .bottom-grid {
-  display:grid; grid-template-columns:1.7fr 1fr; gap:20px;
+  display:grid; grid-template-columns:1.7fr 1fr; gap:20px; /* tabla más ancha que el panel lateral */
 }
+/* Panel contenedor genérico */
 .panel {
   background:#131c34; border-radius:14px; padding:26px 28px;
 }
+/* Encabezado de cada panel */
 .panel-header {
   display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px;
 }
+/* Título del panel */
 .panel-header h2 { font-size:20px; font-weight:700; }
+/* Enlace "ver todo" del panel */
 .panel-header .link { font-size:13px; color:#8891a3; cursor:pointer; align-self:flex-start; margin-top:4px; }
+/* Rango de fechas mostrado en el panel */
 .panel-header .date-range { font-size:13px; color:#8891a3; display:block; margin-top:4px; }
 
-table { width:100%; border-collapse:collapse; }
+/* Tablas de datos del dashboard */
+table { width:100%; border-collapse:collapse; } /* elimina espacios entre celdas */
+/* Celda de cabecera de tabla */
 th {
   text-align:left; font-size:13px; color:#8891a3; font-weight:600;
-  padding-bottom:12px; border-bottom:1px solid #232d4a;
+  padding-bottom:12px; border-bottom:1px solid #232d4a; /* separador inferior */
 }
+/* Celda normal de tabla */
 td { padding:15px 0; font-size:14px; color:#dfe3ec; }
+/* Fila del cuerpo de la tabla con separador inferior */
 tbody tr { border-bottom:1px solid #1c2540; }
+/* Elimina el separador de la última fila */
 tbody tr:last-child { border-bottom:none; }
+/* Colores atenuados para las columnas 2 y 3 */
 td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 
+/* Lista vertical de préstamos/recientes */
 .prestamos-list { display:flex; flex-direction:column; }
+/* Cada elemento de préstamo de la lista */
 .prestamo-item {
   display:flex; justify-content:space-between; align-items:center;
   padding:17px 0; border-bottom:1px solid #1c2540; font-size:14px;
 }
+/* Elimina el separador del último préstamo */
 .prestamo-item:last-child { border-bottom:none; }
+/* Icono circular del estado del préstamo */
 .status-icon {
-  width:22px; height:22px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
+  width:22px; height:22px; border-radius:50%; /* círculo */
+  display:flex; align-items:center; justify-content:center; /* centra el icono */
 }
+/* Tamaño del icono dentro del círculo de estado */
 .status-icon svg { width:13px; height:13px; }
+/* Fondo verde para estado correcto/ok */
 .status-ok { background:rgba(46,204,113,0.15); }
+/* Icono verde del estado correcto */
 .status-ok svg { stroke:#2ecc71; }
+/* Fondo rojo para estado incorrecto */
 .status-bad { background:rgba(231,76,60,0.15); }
+/* Icono rojo del estado incorrecto */
 .status-bad svg { stroke:#e74c3c; }
 
+/* Lista de bloques/horas de la vista del vigilante */
 .bloques-list { display:flex; flex-direction:column; gap:18px; }
+/* Cabecera de cada bloque de hora */
 .bloque-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:14px; color:#dfe3ec; }
+/* Etiqueta de hora del bloque */
 .bloque-time { font-size:13px; color:#8891a3; margin-left:8px; }
+/* Valor numérico del bloque en azul */
 .bloque-value { font-weight:700; color:#4a90e2; }
+/* Valor en rojo cuando el bloque está en estado malo */
 .bloque-value.bad { color:#e74c3c; }
-.bloque-bar { height:8px; background:#1c2540; border-radius:99px; overflow:hidden; }
+/* Barra de progreso de fondo */
+.bloque-bar { height:8px; background:#1c2540; border-radius:99px; overflow:hidden; } /* oculta el excedente del relleno */
+/* Relleno de la barra de progreso */
 .bloque-fill { height:100%; background:#4a90e2; border-radius:99px; }
+/* Relleno en rojo cuando el bloque está en estado malo */
 .bloque-fill.fill-bad { background:#e74c3c; }
 
+/* Mensaje de panel vacío */
 .panel-empty { font-size:14px; color:#8891a3; margin:0; }
+/* Valor de perfil en color atenuado */
 .profile-value { color:#8891a3; }
 
+/* Barra de filtros/búsqueda */
 .filter-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+/* Select y campo de texto de los filtros */
 .filter-select, .filter-input {
   background:#151f38; border:0; border-radius:9px; color:#e5e9f0;
   padding:10px 14px; font-family:inherit; font-size:14px; color-scheme:dark; outline:none;
 }
+/* Ancho mínimo del campo de búsqueda */
 .filter-input { min-width:220px; }
+/* Placeholder del campo de búsqueda */
 .filter-input::placeholder { color:#5c6579; }
+/* Enlace para limpiar los filtros */
 .filter-clear { color:#8891a3; font-size:13px; text-decoration:none; }
+/* Hover del enlace para limpiar filtros */
 .filter-clear:hover { color:#fff; }
 
+/* Píldora con el tipo de registro */
 .tipo-pill {
-  display:inline-block; padding:3px 10px; border-radius:999px;
+  display:inline-block; padding:3px 10px; border-radius:999px; /* píldora */
   background:rgba(74,144,226,0.15); color:#6fb0f0; font-size:12px; font-weight:600;
 }
+/* Píldora con el estado del registro */
 .estado-pill { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+/* Estado "dentro" en verde */
 .estado-dentro { background:rgba(46,204,113,0.15); color:#2ecc71; }
+/* Estado "fuera" en rojo */
 .estado-fuera { background:rgba(231,76,60,0.15); color:#e74c3c; }
 
+/* Contenedor de la paginación */
 .pagination-wrap { margin-top:18px; }
+/* Elimina margen por defecto de la paginación de Bootstrap */
 .pagination-wrap .pagination { margin:0; }
+/* Enlaces de página */
 .pagination-wrap .page-link { background:#151f38; border:1px solid #232d4a; color:#c3c9d8; }
+/* Hover de los enlaces de página */
 .pagination-wrap .page-link:hover { background:#1b2745; color:#fff; }
+/* Página activa en azul */
 .pagination-wrap .page-item.active .page-link { background:#4a90e2; border-color:#4a90e2; color:#fff; }
+/* Página deshabilitada */
 .pagination-wrap .page-item.disabled .page-link { background:#0f1729; color:#4d5468; }
 
+/* Alertas (mensajes al usuario) */
 .alert { border-radius:10px; padding:14px 18px; font-size:14px; margin-bottom:18px; }
+/* Alerta de éxito en verde */
 .alert-ok { background:rgba(46,204,113,0.12); color:#7fe0a5; border:1px solid rgba(46,204,113,0.3); }
+/* Alerta de error en rojo */
 .alert-bad { background:rgba(231,76,60,0.12); color:#f2a49c; border:1px solid rgba(231,76,60,0.3); }
 
+/* Panel del formulario de ingreso con ancho limitado */
 .ingreso-panel { max-width:620px; }
+/* Formulario de ingreso apilado verticalmente */
 .ingreso-form { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+/* Campo individual del formulario */
 .form-field { display:flex; flex-direction:column; gap:8px; width:100%; }
+/* Etiqueta del campo del formulario */
 .form-field label { font-size:13px; font-weight:600; color:#8891a3; }
+/* Select y campo de texto ocupan todo el ancho del campo */
 .form-field .filter-select, .form-field .filter-input { width:100%; min-width:0; }
+/* Botón de aplicar dentro del formulario de ingreso */
 .ingreso-form .date-apply { padding:11px 22px; font-size:14px; }
 
+/* Tarjeta de confirmación (entrada/salida del visitante) */
 .confirm-card {
   display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px;
   background:#151f38; border:1px solid #232d4a; border-radius:12px; padding:20px 22px;
 }
+/* Etiqueta pequeña superior de la tarjeta de confirmación */
 .confirm-label { font-size:11px; letter-spacing:1px; font-weight:600; color:#8891a3; }
+/* Nombre grande de la tarjeta de confirmación */
 .confirm-name { font-size:20px; font-weight:700; margin-top:6px; }
+/* Metadatos adicionales de la tarjeta de confirmación */
 .confirm-meta { font-size:13px; color:#8891a3; margin-top:4px; }
+/* Botón de registrar entrada (verde) */
 .btn-entrada { background:#2ecc71; }
+/* Hover del botón de entrada */
 .btn-entrada:hover { background:#27b866; }
+/* Botón de registrar salida (rojo) */
 .btn-salida { background:#e74c3c; }
+/* Hover del botón de salida */
 .btn-salida:hover { background:#c0392b; }
 
+/* Acciones rápidas del panel del vigilante */
 .vigilante-actions {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:8px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:8px; /* 3 columnas iguales */
 }
+/* Tarjeta de acción (botón grande) */
 .action-card {
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
   background:#131c34; border:1px solid #232d4a; border-radius:18px;
   padding:54px 20px; text-decoration:none; color:#e8ebf1;
   font-size:22px; font-weight:700; letter-spacing:1px; text-align:center;
-  transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  transition:transform .15s ease, border-color .15s ease, background .15s ease; /* anima el hover */
 }
+/* Hover de la tarjeta de acción */
 .action-card:hover { transform:translateY(-3px); background:#172140; color:#fff; }
+/* Íconos de las tarjetas de acción */
 .action-card svg { width:46px; height:46px; stroke-width:2; }
+/* Texto de ayuda dentro de la tarjeta de acción */
 .action-card .action-hint { font-size:13px; font-weight:400; letter-spacing:0; color:#8891a3; }
+/* Acción de entrada: icono verde */
 .action-card.entrada svg { stroke:#2ecc71; }
+/* Acción de entrada: borde verde al hacer hover */
 .action-card.entrada:hover { border-color:#2ecc71; }
+/* Acción de salida: icono rojo */
 .action-card.salida svg { stroke:#e74c3c; }
+/* Acción de salida: borde rojo al hacer hover */
 .action-card.salida:hover { border-color:#e74c3c; }
+/* Acción de historial: icono azul */
 .action-card.historial svg { stroke:#4a90e2; }
+/* Acción de historial: borde azul al hacer hover */
 .action-card.historial:hover { border-color:#4a90e2; }
 
+/* Botón que abre/cierra el sidebar en pantallas pequeñas */
 .sidebar-toggle {
-  display:none; width:42px; height:42px; margin-bottom:16px;
-  align-items:center; justify-content:center;
+  display:none; width:42px; height:42px; margin-bottom:16px; /* oculto en escritorio */
+  align-items:center; justify-content:center; /* centra el icono */
   background:#151f38; border:1px solid #232d4a; border-radius:10px;
   cursor:pointer; padding:0;
 }
+/* Hover del botón del sidebar */
 .sidebar-toggle:hover { background:#1c2650; }
+/* Icono del botón del sidebar */
 .sidebar-toggle svg { width:20px; height:20px; stroke:#e5e9f0; }
+/* Capa oscura detrás del sidebar en móvil */
 .sidebar-overlay {
-  display:none; position:fixed; inset:0; background:rgba(4,8,18,.68); z-index:1040;
+  display:none; position:fixed; inset:0; background:rgba(4,8,18,.68); z-index:1040; /* cubre la pantalla */
 }
+/* Estado visible de la capa oscura */
 .sidebar-overlay.show { display:block; }
 
+/* Media query: pantallas de hasta 900px (tabletas/móviles) */
 @media (max-width:900px) {
-  .stats-grid { grid-template-columns:repeat(2,1fr); }
-  .bottom-grid { grid-template-columns:1fr; }
-  .vigilante-actions { grid-template-columns:1fr; }
-  .main { padding:22px 18px; }
-  .sidebar-toggle { display:inline-flex; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); } /* estadísticas en 2 columnas */
+  .bottom-grid { grid-template-columns:1fr; } /* paneles en una sola columna */
+  .vigilante-actions { grid-template-columns:1fr; } /* acciones apiladas verticalmente */
+  .main { padding:22px 18px; } /* reduce el espaciado del contenido */
+  .sidebar-toggle { display:inline-flex; } /* muestra el botón de abrir sidebar */
+  /* El sidebar se transforma en panel deslizante fijo */
   .sidebar {
     position:fixed; top:0; bottom:0; left:0; z-index:1050;
-    transform:translateX(-100%); transition:transform .28s ease;
+    transform:translateX(-100%); transition:transform .28s ease; /* oculto fuera de la pantalla */
     box-shadow:0 0 40px rgba(0,0,0,.45); overflow-y:auto;
   }
+  /* Clase open: desliza el sidebar hacia la vista */
   .sidebar.open { transform:translateX(0); }
 }
 
+/* Media query: pantallas de hasta 520px (móviles pequeños) */
 @media (max-width:520px) {
-  .stats-grid { grid-template-columns:1fr; }
+  .stats-grid { grid-template-columns:1fr; } /* una sola columna de estadísticas */
   .header-row { justify-content:flex-start; flex-wrap:wrap; gap:10px; }
   .date-filter { font-size:13px; flex-wrap:wrap; }
 }
 
+/* Encabezado genérico de página interna */
 .page-header {
   display:flex; justify-content:space-between; align-items:center;
   gap:16px; flex-wrap:wrap; margin-bottom:24px;
 }
+/* Título del encabezado de página */
 .page-header h1 { font-size:30px; font-weight:700; }
+/* Subtítulo del encabezado de página */
 .page-header .subtitle { font-size:14px; color:#8891a3; margin-top:4px; }
+/* Acciones alineadas a la derecha del encabezado */
 .page-header-actions { display:flex; gap:12px; }
 
+/* Formulario de búsqueda */
 .search-form {
   display:flex; align-items:center; gap:9px;
   background:#151f38; border:1px solid #232d4a; border-radius:9px;
   padding:4px 6px 4px 13px;
 }
+/* Icono de lupa del buscador */
 .search-form > svg { width:16px; height:16px; stroke:#8891a3; flex-shrink:0; }
+/* Campo de texto del buscador con fondo transparente */
 .search-form input[type="text"] {
   background:transparent; border:0; outline:none; color:#e8ebf1;
   font-family:inherit; font-size:14px; min-width:190px; padding:8px 0;
 }
+/* Placeholder del campo de búsqueda */
 .search-form input::placeholder { color:#6b7488; }
+/* Botón de búsqueda dentro del formulario */
 .search-form .date-apply { padding:8px 14px; }
+/* Botón circular para limpiar la búsqueda */
 .search-clear {
   display:flex; align-items:center; justify-content:center;
-  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  width:22px; height:22px; border-radius:50%; flex-shrink:0; /* círculo */
   background:#232d4a; color:#c3c9d8; text-decoration:none; font-size:15px; line-height:1;
 }
+/* Hover del botón de limpiar búsqueda */
 .search-clear:hover { background:#3a4a72; color:#fff; }
 
+/* Estilos base de los botones */
 .btn {
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
   border:1px solid transparent; border-radius:9px; padding:11px 18px;
   font-family:inherit; font-size:14px; font-weight:600; line-height:1;
   cursor:pointer; text-decoration:none; white-space:nowrap;
 }
+/* Iconos dentro de los botones */
 .btn svg { width:16px; height:16px; stroke:currentColor; }
+/* Botón primario azul */
 .btn-primary { background:#4a90e2; color:#fff; }
+/* Hover del botón primario */
 .btn-primary:hover { background:#3a7bc8; color:#fff; }
+/* Botón tipo fantasma (fondo oscuro, borde sutil) */
 .btn-ghost { background:#151f38; color:#c3c9d8; border-color:#232d4a; }
+/* Hover del botón fantasma */
 .btn-ghost:hover { background:#1c2650; color:#fff; }
+/* Botón de peligro/eliminar (rojo) */
 .btn-danger { background:rgba(231,76,60,.15); color:#e74c3c; border-color:rgba(231,76,60,.35); }
+/* Hover del botón de peligro */
 .btn-danger:hover { background:#e74c3c; color:#fff; }
 
+/* Contenedor de tablas con scroll horizontal */
 .table-wrap { overflow-x:auto; }
+/* Columna de acciones alineada a la derecha */
 .cell-actions { text-align:right; width:1%; white-space:nowrap; }
+/* Grupo de acciones dentro de una fila de tabla */
 .table-actions { display:flex; gap:8px; justify-content:flex-end; }
+/* Formularios dentro del grupo de acciones */
 .table-actions form { display:inline-flex; margin:0; }
+/* Botón de icono (acciones por fila) */
 .icon-btn {
   width:34px; height:34px; border-radius:8px; padding:0;
-  display:inline-flex; align-items:center; justify-content:center;
+  display:inline-flex; align-items:center; justify-content:center; /* centra el icono */
   background:#151f38; border:1px solid #232d4a; color:#c3c9d8;
   cursor:pointer; text-decoration:none;
 }
+/* Iconos dentro de los botones de icono */
 .icon-btn svg { width:16px; height:16px; stroke:currentColor; }
+/* Hover genérico de los botones de icono */
 .icon-btn:hover { background:#1c2650; color:#fff; border-color:#3a4a72; }
+/* Hover de peligro en botones de icono (rojo) */
 .icon-btn.danger:hover { background:rgba(231,76,60,.18); color:#e74c3c; border-color:#e74c3c; }
+/* Hover de éxito en botones de icono (verde) */
 .icon-btn.success:hover { background:rgba(46,204,113,.18); color:#2ecc71; border-color:#2ecc71; }
+/* Celda vacía de una tabla */
 .empty-cell { color:#8891a3; text-align:center; padding:28px 0 !important; }
 
+/* Insignias (estado activo/inactivo) */
 .badge {
-  display:inline-block; padding:4px 11px; border-radius:99px;
+  display:inline-block; padding:4px 11px; border-radius:99px; /* píldora */
   font-size:12px; font-weight:600; line-height:1.4;
 }
+/* Insignia de estado activo (verde) */
 .badge-active { background:rgba(46,204,113,.15); color:#2ecc71; }
+/* Insignia de estado inactivo (rojo) */
 .badge-inactive { background:rgba(231,76,60,.15); color:#e74c3c; }
 
+/* Paginación de tablas */
 .table-pagination { margin-top:22px; }
+/* Lista de paginación dispuesta en fila */
 .table-pagination .pagination { display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none; }
+/* Enlace de cada página */
 .table-pagination .page-link {
   display:block; min-width:36px; text-align:center;
   background:#151f38; border:1px solid #232d4a; border-radius:8px;
   color:#c3c9d8; font-size:13px; padding:8px 11px; text-decoration:none;
 }
+/* Hover de los enlaces de paginación */
 .table-pagination .page-link:hover { background:#1c2650; color:#fff; }
+/* Página activa de la paginación */
 .table-pagination .page-item.active .page-link { background:#4a90e2; border-color:#4a90e2; color:#fff; }
+/* Página deshabilitada de la paginación */
 .table-pagination .page-item.disabled .page-link { background:#0f1830; color:#4d5468; border-color:#1c2540; }
 
+/* Panel de formulario con ancho limitado */
 .form-panel { max-width:860px; }
-.form-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px 22px; }
+/* Cuadrícula de campos del formulario */
+.form-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px 22px; } /* 2 columnas */
+/* Campo individual del formulario */
 .form-field { display:flex; flex-direction:column; gap:7px; }
+/* Campo a ancho completo (ocupa ambas columnas) */
 .form-field.full { grid-column:1 / -1; }
+/* Etiqueta del campo del formulario */
 .form-field label { font-size:13px; color:#8891a3; font-weight:600; }
+/* Inputs y selects de los formularios */
 .form-field input, .form-field select {
   width:100%; background:#0f1830; border:1px solid #232d4a; border-radius:9px;
   padding:11px 13px; color:#e8ebf1; font-family:inherit; font-size:14px;
   outline:none; color-scheme:dark;
 }
+/* Resalta el borde azul al enfocar un campo */
 .form-field input:focus, .form-field select:focus { border-color:#4a90e2; }
+/* Campos deshabilitados: atenuados e intransitables */
 .form-field input:disabled { opacity:.6; cursor:not-allowed; }
+/* Select con cursor de puntero */
 .form-field select { cursor:pointer; }
+/* Select tipo filtro con altura máxima */
 .form-field select.select-filter { max-height:220px; }
+/* Opciones internas del select filtro */
 .form-field select.select-filter option { padding:7px 11px; }
+/* Select con búsqueda (texto pequeño) */
 .form-field .select-search { font-size:13px; }
+/* Vista previa de la imagen del equipo */
 .equipo-img-preview { margin-top:6px; max-width:200px; border-radius:9px; border:1px solid #232d4a; }
+/* Imagen grande del equipo */
 .equipo-img-show { max-width:280px; border-radius:9px; border:1px solid #232d4a; margin-top:6px; }
+/* Miniatura de la imagen del equipo */
 .equipo-img-thumb { width:52px; height:52px; object-fit:cover; border-radius:8px; border:1px solid #232d4a; display:block; }
+/* Texto de ayuda del formulario */
 .form-hint { font-size:12px; color:#8891a3; }
+/* Mensaje de error del formulario */
 .form-error { font-size:12px; color:#e74c3c; }
+/* Acciones (botones) al pie del formulario */
 .form-actions {
-  display:flex; gap:12px; justify-content:flex-end;
-  margin-top:26px; padding-top:20px; border-top:1px solid #1c2540;
+  display:flex; gap:12px; justify-content:flex-end; /* botones a la derecha */
+  margin-top:26px; padding-top:20px; border-top:1px solid #1c2540; /* separador superior */
 }
+/* Bloque de eliminación con separador superior */
 .delete-block { margin-top:22px; padding-top:20px; border-top:1px solid #1c2540; }
 
+/* Alertas reutilizables */
 .alert { border-radius:10px; padding:13px 18px; font-size:14px; margin-bottom:20px; border:1px solid transparent; }
+/* Lista dentro de una alerta */
 .alert-list { margin:0; padding-left:18px; }
+/* Espacio entre elementos consecutivos de la lista de alerta */
 .alert-list li + li { margin-top:4px; }
+/* Alerta de éxito (verde) */
 .alert-success { background:rgba(46,204,113,.12); border-color:rgba(46,204,113,.3); color:#2ecc71; }
+/* Alerta de error (rojo) */
 .alert-error { background:rgba(231,76,60,.12); border-color:rgba(231,76,60,.3); color:#e74c3c; }
 
+/* Media query: pantallas de hasta 700px */
 @media (max-width:700px) {
-  .form-grid { grid-template-columns:1fr; }
-  .page-header { align-items:flex-start; }
-  .page-header-actions { flex-wrap:wrap; width:100%; }
-  .search-form { flex:1; }
-  .search-form input[type="text"] { min-width:0; flex:1; }
+  .form-grid { grid-template-columns:1fr; } /* formularios en una sola columna */
+  .page-header { align-items:flex-start; } /* alinea el encabezado arriba */
+  .page-header-actions { flex-wrap:wrap; width:100%; } /* acciones apilables */
+  .search-form { flex:1; } /* el buscador ocupa el espacio disponible */
+  .search-form input[type="text"] { min-width:0; flex:1; } /* el campo se adapta al ancho */
 }

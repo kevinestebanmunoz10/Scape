@@ -1,9 +1,11 @@
+{{-- Plantilla de correo electrónico para enviar el código de restablecimiento de contraseña --}}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de verificación</title>
+    <!-- Estilos inline del correo, compatibles con la mayoría de clientes de email -->
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -50,15 +52,20 @@
     </style>
 </head>
 <body>
+    <!-- Contenedor principal del correo -->
     <div class="container">
+        <!-- Nombre de la marca -->
         <div class="logo">SCAPE</div>
+        <!-- Saludo inicial -->
         <p>Hola,</p>
         <p>Recibimos una solicitud para restablecer tu contraseña. Usa el siguiente código de verificación:</p>
 
+        {{-- Caja que muestra el código de verificación generado --}}
         <div class="code-box">{{ $code }}</div>
 
         <p>Este código es válido por <strong>60 minutos</strong>. Si no solicitaste este cambio, ignora este correo.</p>
 
+        <!-- Texto de pie del correo -->
         <p class="hint">SCAPE — Control de Acceso Inteligente</p>
     </div>
 </body>

@@ -1,8 +1,12 @@
+{{-- Vista del módulo de visitantes: extiende el layout principal --}}
 @extends('layouts.app')
 
+{{-- Título de la página --}}
 @section('title', 'SCAPE - Control de Visitantes')
 
+{{-- Inicio del bloque de contenido --}}
 @section('content')
+<!-- Encabezado del módulo -->
 <section class="module-hero text-center text-white">
     <div class="container">
         <br>
@@ -13,8 +17,10 @@
     </div>
 </section>
 
+<!-- Sección de características del módulo -->
 <section class="container py-5">
     <div class="row g-4 mb-5">
+        <!-- Tarjeta: pre-registro -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-person-plus display-4 text-cyan"></i>
@@ -22,6 +28,7 @@
                 <p class="text-secondary-custom small m-0">Los visitantes se registran antes de llegar.</p>
             </div>
         </div>
+        <!-- Tarjeta: notificaciones -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-bell display-4 text-cyan"></i>
@@ -29,6 +36,7 @@
                 <p class="text-secondary-custom small m-0">Alertas automáticas al responsable.</p>
             </div>
         </div>
+        <!-- Tarjeta: seguridad -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-shield display-4 text-cyan"></i>
@@ -39,11 +47,13 @@
     </div>
 
     <div class="row g-4 align-items-center">
+        <!-- Columna de texto descriptivo -->
         <div class="col-lg-6" data-aos="fade-right">
             <h2 class="fw-bold h1 text-white mb-4">Control inteligente de visitantes</h2>
             <p class="text-secondary-custom mb-3">Los visitantes externos pueden ser pre-registrados por el responsable antes de su llegada. Al llegar, el sistema valida su identidad y notifica automáticamente al funcionario que recibe.</p>
             <p class="text-secondary-custom">Garantiza la seguridad de tu institución con un flujo de trabajo sencillo y eficiente.</p>
         </div>
+        <!-- Columna con la lista de funcionalidades -->
         <div class="col-lg-6" data-aos="fade-left">
             <div class="card-custom p-4">
                 <ul class="list-unstyled">
@@ -57,4 +67,5 @@
         </div>
     </div>
 </section>
+{{-- Fin del bloque de contenido --}}
 @endsection
