@@ -1,185 +1,185 @@
 <?php
 
-use App\Http\Controllers\AccesoController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EquipoController;
-use App\Http\Controllers\PasswordResetController;
-use App\Http\Controllers\Rector\UsuariosController;
-use App\Http\Controllers\RegistroIngresoController;
-use App\Http\Controllers\RegistroSalidaController;
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccesoController; // Controlador que gestiona el reporte de accesos
+use App\Http\Controllers\DashboardController; // Controlador que gestiona el panel del administrador
+use App\Http\Controllers\EquipoController; // Controlador que gestiona los equipos
+use App\Http\Controllers\PasswordResetController; // Controlador que gestiona el restablecimiento de contraseña
+use App\Http\Controllers\Rector\UsuariosController; // Controlador del rector para gestionar usuarios
+use App\Http\Controllers\RegistroIngresoController; // Controlador que gestiona el registro de entradas
+use App\Http\Controllers\RegistroSalidaController; // Controlador que gestiona el registro de salidas
+use App\Http\Controllers\UserController; // Controlador que gestiona los usuarios
+use Illuminate\Http\Request; // Clase base para manejar la petición HTTP
+use Illuminate\Support\Facades\Auth; // Fachada para la autenticación de usuarios
+use Illuminate\Support\Facades\DB; // Fachada para ejecutar consultas a la base de datos
+use Illuminate\Support\Facades\Route; // Fachada para definir las rutas de la aplicación
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route(Auth::user()->panelRoute());
+Route::get('/', function () { // Define la ruta principal de la aplicación
+    if (Auth::check()) { // Verifica si el usuario ya está autenticado
+        return redirect()->route(Auth::user()->panelRoute()); // Redirige al panel correspondiente según su rol
     }
 
-    return view('home');
+    return view('home'); // Muestra la página de inicio para usuarios no autenticados
 });
 
-Route::view('/planes', 'planes');
+Route::view('/planes', 'planes'); // Ruta de vista estática para la página de planes
 
-Route::view('/modulos/personas', 'modulos.personas');
-Route::view('/modulos/equipos', 'modulos.equipos');
-Route::view('/modulos/visitantes', 'modulos.visitantes');
-Route::view('/modulos/reportes', 'modulos.reportes');
+Route::view('/modulos/personas', 'modulos.personas'); // Ruta de vista estática para el módulo de personas
+Route::view('/modulos/equipos', 'modulos.equipos'); // Ruta de vista estática para el módulo de equipos
+Route::view('/modulos/visitantes', 'modulos.visitantes'); // Ruta de vista estática para el módulo de visitantes
+Route::view('/modulos/reportes', 'modulos.reportes'); // Ruta de vista estática para el módulo de reportes
 
-Route::get('/login', function () {
-    if (Auth::check()) {
-        return redirect()->route(Auth::user()->panelRoute());
+Route::get('/login', function () { // Define la ruta GET para mostrar el formulario de inicio de sesión
+    if (Auth::check()) { // Verifica si el usuario ya está autenticado
+        return redirect()->route(Auth::user()->panelRoute()); // Redirige al panel correspondiente según su rol
     }
 
-    return view('auth.login');
-})->name('login');
+    return view('auth.login'); // Muestra el formulario de inicio de sesión
+})->name('login'); // Asigna el nombre 'login' a esta ruta
 
-Route::post('/login', function (Request $request) {
-    $datos = $request->validate([
+Route::post('/login', function (Request $request) { // Define la ruta POST que procesa el inicio de sesión
+    $datos = $request->validate([ // Valida los datos enviados en el formulario de login
         // Validación en tiempo real del documento: obligatorio (solo números se garantiza en el input).
-        'documento' => ['required', 'string'],
+        'documento' => ['required', 'string'], // El documento es obligatorio y debe ser texto
         // Validación en tiempo real de la contraseña: mínimo 6 caracteres, con minúsculas y números.
-        'contrasena' => ['required', 'string', 'min:6', 'regex:/[a-z]/', 'regex:/[0-9]/'],
-        'terminos' => ['accepted'],
+        'contrasena' => ['required', 'string', 'min:6', 'regex:/[a-z]/', 'regex:/[0-9]/'], // La contraseña exige mínimo 6 caracteres, una minúscula y un número
+        'terminos' => ['accepted'], // Los términos y condiciones deben estar aceptados
     ], [
-        'terminos.accepted' => 'Debes aceptar los términos y condiciones para iniciar sesión.',
+        'terminos.accepted' => 'Debes aceptar los términos y condiciones para iniciar sesión.', // Mensaje personalizado si no se aceptan los términos
     ]);
 
-    $documento = trim($datos['documento']);
-    $contrasena = $datos['contrasena'];
+    $documento = trim($datos['documento']); // Limpia los espacios del documento enviado
+    $contrasena = $datos['contrasena']; // Obtiene la contraseña enviada
 
-    if (! Auth::attempt([
-        'Documento' => $documento,
-        'password' => $contrasena,
-    ])) {
-        return back()
-            ->withInput($request->only('documento'))
-            ->withErrors([
-                'documento' => 'Documento o contraseña incorrectos.',
+    if (! Auth::attempt([ // Intenta autenticar al usuario con las credenciales enviadas
+        'Documento' => $documento, // Usando el documento como identificador
+        'password' => $contrasena, // Y la contraseña proporcionada
+    ])) { // Verifica si la autenticación falló
+        return back() // Devuelve al formulario anterior
+            ->withInput($request->only('documento')) // Conserva el documento en el formulario
+            ->withErrors([ // Con un mensaje de error
+                'documento' => 'Documento o contraseña incorrectos.', // Mensaje de credenciales inválidas
             ]);
     }
 
-    $request->session()->regenerate();
+    $request->session()->regenerate(); // Regenera el id de sesión para prevenir fijación de sesión
 
-    return redirect()->route(Auth::user()->panelRoute());
+    return redirect()->route(Auth::user()->panelRoute()); // Redirige al panel correspondiente después del login
 });
 
-Route::post('/admin/logout', function (Request $request) {
-    Auth::logout();
+Route::post('/admin/logout', function (Request $request) { // Define la ruta POST para cerrar la sesión del administrador
+    Auth::logout(); // Cierra la sesión del usuario autenticado
 
-    $request->session()->invalidate();
+    $request->session()->invalidate(); // Invalida la sesión actual
 
-    $request->session()->regenerateToken();
+    $request->session()->regenerateToken(); // Regenera el token CSRF de la sesión
 
-    return redirect()->route('login');
-})->name('logout');
+    return redirect()->route('login'); // Redirige al formulario de inicio de sesión
+})->name('logout'); // Asigna el nombre 'logout' a esta ruta
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'admin'])
-    ->name('dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'index']) // Define la ruta del panel de administración
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('dashboard'); // Asigna el nombre 'dashboard' a esta ruta
 
-Route::get('/admin/accesos', [AccesoController::class, 'index'])
-    ->middleware(['auth', 'admin'])
-    ->name('admin.accesos');
+Route::get('/admin/accesos', [AccesoController::class, 'index']) // Define la ruta del reporte de accesos
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.accesos'); // Asigna el nombre 'admin.accesos' a esta ruta
 
-Route::get('/admin/perfil', function () {
-    $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
+Route::get('/admin/perfil', function () { // Define la ruta del perfil del administrador
+    $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol'); // Consulta el nombre del rol del usuario autenticado
 
-    return view('admin.perfil', ['rol' => $rol]);
-})->middleware(['auth', 'admin'])->name('admin.perfil');
+    return view('admin.perfil', ['rol' => $rol]); // Muestra la vista del perfil con el rol consultado
+})->middleware(['auth', 'admin'])->name('admin.perfil'); // Exige autenticación de administrador y asigna el nombre 'admin.perfil'
 
 // donde se redirige al administrador a su panel
-Route::resource('admin/usuarios', UserController::class)
-    ->parameters(['usuarios' => 'usuario'])
-    ->names('admin.usuarios')
-    ->middleware(['auth', 'admin']);
+Route::resource('admin/usuarios', UserController::class) // Define las rutas CRUD de usuarios del administrador
+    ->parameters(['usuarios' => 'usuario']) // Renombra el parámetro de ruta a 'usuario'
+    ->names('admin.usuarios') // Prefija los nombres de todas las rutas con 'admin.usuarios'
+    ->middleware(['auth', 'admin']); // Exige que el usuario esté autenticado y tenga rol de administrador
 
-Route::post('admin/usuarios/{usuario}/activar', [UserController::class, 'activar'])
-    ->middleware(['auth', 'admin'])
-    ->name('admin.usuarios.activar');
+Route::post('admin/usuarios/{usuario}/activar', [UserController::class, 'activar']) // Define la ruta para reactivar un usuario
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.usuarios.activar'); // Asigna el nombre 'admin.usuarios.activar' a esta ruta
 
-Route::resource('admin/equipos', EquipoController::class)
-    ->parameters(['equipos' => 'equipo'])
-    ->names('admin.equipos')
-    ->middleware(['auth', 'admin']);
+Route::resource('admin/equipos', EquipoController::class) // Define las rutas CRUD de equipos del administrador
+    ->parameters(['equipos' => 'equipo']) // Renombra el parámetro de ruta a 'equipo'
+    ->names('admin.equipos') // Prefija los nombres de todas las rutas con 'admin.equipos'
+    ->middleware(['auth', 'admin']); // Exige que el usuario esté autenticado y tenga rol de administrador
 
-Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->group(function () {
-    Route::view('dashboard', 'profesor.dashboard')->name('dashboard');
+Route::prefix('profesor')->name('profesor.')->middleware(['auth', 'profesor'])->group(function () { // Agrupa las rutas del profesor con prefijo, nombres y middleware comunes
+    Route::view('dashboard', 'profesor.dashboard')->name('dashboard'); // Ruta de vista del panel del profesor
 
-    Route::view('toma-lista', 'profesor.toma-lista')->name('toma-lista');
+    Route::view('toma-lista', 'profesor.toma-lista')->name('toma-lista'); // Ruta de vista para tomar lista del profesor
 
-    Route::view('fichas-grupos', 'profesor.fichas-grupos')->name('fichas-grupos');
+    Route::view('fichas-grupos', 'profesor.fichas-grupos')->name('fichas-grupos'); // Ruta de vista de fichas y grupos del profesor
 
-    Route::view('reportes-alertas', 'profesor.reportes-alertas')->name('reportes-alertas');
+    Route::view('reportes-alertas', 'profesor.reportes-alertas')->name('reportes-alertas'); // Ruta de vista de reportes y alertas del profesor
 
-    Route::view('exportar', 'profesor.exportar')->name('exportar');
+    Route::view('exportar', 'profesor.exportar')->name('exportar'); // Ruta de vista para exportar datos del profesor
 
-    Route::get('perfil', function () {
-        $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
+    Route::get('perfil', function () { // Define la ruta del perfil del profesor
+        $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol'); // Consulta el nombre del rol del usuario autenticado
 
-        return view('profesor.perfil', ['rol' => $rol]);
-    })->name('perfil');
+        return view('profesor.perfil', ['rol' => $rol]); // Muestra la vista del perfil con el rol consultado
+    })->name('perfil'); // Asigna el nombre 'perfil' a esta ruta
 });
 
-Route::prefix('rector')->name('rector.')->middleware(['auth', 'rector'])->group(function () {
-    Route::view('dashboard', 'rector.dashboard')->name('dashboard');
+Route::prefix('rector')->name('rector.')->middleware(['auth', 'rector'])->group(function () { // Agrupa las rutas del rector con prefijo, nombres y middleware comunes
+    Route::view('dashboard', 'rector.dashboard')->name('dashboard'); // Ruta de vista del panel del rector
 
-    Route::resource('usuarios', UsuariosController::class)
-        ->parameters(['usuarios' => 'usuario'])
-        ->names('usuarios')
-        ->except('destroy');
+    Route::resource('usuarios', UsuariosController::class) // Define las rutas CRUD de usuarios del rector
+        ->parameters(['usuarios' => 'usuario']) // Renombra el parámetro de ruta a 'usuario'
+        ->names('usuarios') // Prefija los nombres de todas las rutas con 'usuarios'
+        ->except('destroy'); // Excluye la ruta de eliminación
 
-    Route::get('perfil', function () {
-        $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
+    Route::get('perfil', function () { // Define la ruta del perfil del rector
+        $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol'); // Consulta el nombre del rol del usuario autenticado
 
-        return view('rector.perfil', ['rol' => $rol]);
-    })->name('perfil');
+        return view('rector.perfil', ['rol' => $rol]); // Muestra la vista del perfil con el rol consultado
+    })->name('perfil'); // Asigna el nombre 'perfil' a esta ruta
 });
 
-Route::prefix('vigilante')->name('vigilante.')->middleware(['auth', 'vigilante'])->group(function () {
-    Route::view('dashboard', 'vigilante.dashboard')->name('dashboard');
+Route::prefix('vigilante')->name('vigilante.')->middleware(['auth', 'vigilante'])->group(function () { // Agrupa las rutas del vigilante con prefijo, nombres y middleware comunes
+    Route::view('dashboard', 'vigilante.dashboard')->name('dashboard'); // Ruta de vista del panel del vigilante
 
-    Route::get('entrada', [RegistroIngresoController::class, 'create'])->name('entrada');
+    Route::get('entrada', [RegistroIngresoController::class, 'create'])->name('entrada'); // Ruta para mostrar el formulario de entrada
 
-    Route::post('entrada/buscar', [RegistroIngresoController::class, 'buscar'])->name('entrada.buscar');
+    Route::post('entrada/buscar', [RegistroIngresoController::class, 'buscar'])->name('entrada.buscar'); // Ruta que busca a la persona para el ingreso
 
-    Route::post('entrada', [RegistroIngresoController::class, 'store'])->name('entrada.store');
+    Route::post('entrada', [RegistroIngresoController::class, 'store'])->name('entrada.store'); // Ruta que guarda el ingreso registrado
 
-    Route::get('salida', [RegistroSalidaController::class, 'create'])->name('salida');
+    Route::get('salida', [RegistroSalidaController::class, 'create'])->name('salida'); // Ruta para mostrar el formulario de salida
 
-    Route::post('salida/buscar', [RegistroSalidaController::class, 'buscar'])->name('salida.buscar');
+    Route::post('salida/buscar', [RegistroSalidaController::class, 'buscar'])->name('salida.buscar'); // Ruta que busca a la persona para la salida
 
-    Route::post('salida', [RegistroSalidaController::class, 'store'])->name('salida.store');
+    Route::post('salida', [RegistroSalidaController::class, 'store'])->name('salida.store'); // Ruta que guarda la salida registrada
 
-    Route::get('perfil', function () {
-        $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol');
+    Route::get('perfil', function () { // Define la ruta del perfil del vigilante
+        $rol = DB::table('rol')->where('id_rol', Auth::user()->id_rol)->value('rol'); // Consulta el nombre del rol del usuario autenticado
 
-        return view('vigilante.perfil', ['rol' => $rol]);
-    })->name('perfil');
+        return view('vigilante.perfil', ['rol' => $rol]); // Muestra la vista del perfil con el rol consultado
+    })->name('perfil'); // Asigna el nombre 'perfil' a esta ruta
 });
 
-Route::get('/admin/password/reset', [PasswordResetController::class, 'showForgotForm'])
-    ->middleware('guest')
-    ->name('password.request');
+Route::get('/admin/password/reset', [PasswordResetController::class, 'showForgotForm']) // Ruta que muestra el formulario de solicitud de restablecimiento
+    ->middleware('guest') // Solo accesible para usuarios no autenticados
+    ->name('password.request'); // Asigna el nombre 'password.request' a esta ruta
 
-Route::post('/admin/password/email', [PasswordResetController::class, 'sendCode'])
-    ->middleware('guest')
-    ->name('password.email');
+Route::post('/admin/password/email', [PasswordResetController::class, 'sendCode']) // Ruta que envía el código de restablecimiento
+    ->middleware('guest') // Solo accesible para usuarios no autenticados
+    ->name('password.email'); // Asigna el nombre 'password.email' a esta ruta
 
-Route::get('/admin/password/verify', [PasswordResetController::class, 'showVerifyForm'])
-    ->middleware('guest')
-    ->name('password.verify.form');
+Route::get('/admin/password/verify', [PasswordResetController::class, 'showVerifyForm']) // Ruta que muestra el formulario de verificación del código
+    ->middleware('guest') // Solo accesible para usuarios no autenticados
+    ->name('password.verify.form'); // Asigna el nombre 'password.verify.form' a esta ruta
 
-Route::post('/admin/password/verify', [PasswordResetController::class, 'verifyCode'])
-    ->middleware('guest')
-    ->name('password.verify');
+Route::post('/admin/password/verify', [PasswordResetController::class, 'verifyCode']) // Ruta que verifica el código enviado
+    ->middleware('guest') // Solo accesible para usuarios no autenticados
+    ->name('password.verify'); // Asigna el nombre 'password.verify' a esta ruta
 
-Route::get('/admin/password/new', [PasswordResetController::class, 'showResetForm'])
-    ->middleware('guest')
-    ->name('password.reset');
+Route::get('/admin/password/new', [PasswordResetController::class, 'showResetForm']) // Ruta que muestra el formulario de la nueva contraseña
+    ->middleware('guest') // Solo accesible para usuarios no autenticados
+    ->name('password.reset'); // Asigna el nombre 'password.reset' a esta ruta
 
-Route::post('/admin/password/reset', [PasswordResetController::class, 'store'])
-    ->middleware('guest')
-    ->name('password.store');
+Route::post('/admin/password/reset', [PasswordResetController::class, 'store']) // Ruta que guarda la nueva contraseña
+    ->middleware('guest') // Solo accesible para usuarios no autenticados
+    ->name('password.store'); // Asigna el nombre 'password.store' a esta ruta

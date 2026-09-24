@@ -1,8 +1,12 @@
+{{-- Vista del módulo de reportes: extiende el layout principal --}}
 @extends('layouts.app')
 
+{{-- Título de la página --}}
 @section('title', 'SCAPE - Reportes')
 
+{{-- Inicio del bloque de contenido --}}
 @section('content')
+<!-- Encabezado del módulo -->
 <section class="module-hero text-center text-white">
     <div class="container">
         <br>
@@ -13,8 +17,10 @@
     </div>
 </section>
 
+<!-- Sección de características del módulo -->
 <section class="container py-5">
     <div class="row g-4 mb-5">
+        <!-- Tarjeta: datos en tiempo real -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-bar-chart-line display-4 text-cyan"></i>
@@ -22,6 +28,7 @@
                 <p class="text-secondary-custom small m-0">Datos actualizados constantemente.</p>
             </div>
         </div>
+        <!-- Tarjeta: exportación a PDF -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-file-earmark-pdf display-4 text-cyan"></i>
@@ -29,6 +36,7 @@
                 <p class="text-secondary-custom small m-0">Descarga reportes en formato PDF.</p>
             </div>
         </div>
+        <!-- Tarjeta: alarmas -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-exclamation-triangle display-4 text-cyan"></i>
@@ -39,6 +47,7 @@
     </div>
 
     <div class="row g-4 align-items-center">
+        <!-- Columna con la lista de tipos de reportes -->
         <div class="col-lg-6" data-aos="fade-left">
             <div class="card-custom p-4">
                 <ul class="list-unstyled">
@@ -50,6 +59,7 @@
                 </ul>
             </div>
         </div>
+        <!-- Columna de texto descriptivo -->
         <div class="col-lg-6" data-aos="fade-right">
             <h2 class="fw-bold h1 text-white mb-4">Información al instante</h2>
             <p class="text-secondary-custom mb-3">Consulta reportes en tiempo real o exporta la información que necesites. Desde reportes de asistencia hasta inventario completo, SCAPE te da visibilidad total de tu institución.</p>
@@ -57,4 +67,5 @@
         </div>
     </div>
 </section>
+{{-- Fin del bloque de contenido --}}
 @endsection

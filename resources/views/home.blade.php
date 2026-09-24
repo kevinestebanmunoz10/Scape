@@ -1,17 +1,24 @@
+{{-- La vista de inicio extiende el layout principal (layouts.app) --}}
 @extends('layouts.app')
 
+{{-- Título de la página que se muestra en la pestaña del navegador --}}
 @section('title', 'SCAPE - Control de Acceso Inteligente')
 
+{{-- Inicio del bloque de contenido que será insertado en el layout --}}
 @section('content')
+    <!-- Sección hero: presentación inicial de la plataforma -->
     <header id="inicio" class="hero-section text-center text-white">
         <div class="container" data-aos="fade-up">
+            <!-- Título principal con animación de aparición -->
             <h1 class="titulo-impacto">
                 Control total <span>de acceso e inventario</span><br>en tu institución
             </h1>
+            <!-- Descripción breve del valor del producto -->
             <p class="lead w-75 mx-auto text-light opacity-75 mb-5">
                 SCAPE centraliza el registro de personal, equipos y visitantes en una sola plataforma.
                 Pensado para instituciones que necesitan seguridad real sin complicaciones.
             </p>
+            <!-- Botones que redirigen a las secciones de la misma página -->
             <div class="d-flex justify-content-center gap-3">
                 <a href="#caracteristicas" class="btn btn-primary-custom">Conocer características</a>
                 <a href="#nosotros" class="btn btn-outline-light btn-lg rounded-pill px-4">Acerca de nosotros</a>
@@ -19,21 +26,25 @@
         </div>
     </header>
 
+    <!-- Sección con estadísticas rápidas de la institución -->
     <section class="container mb-5">
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                <!-- Tarjeta: accesos registrados en el día -->
                 <div class="p-4 card-custom text-center">
                     <p class="text-secondary-custom mb-1 small">Accesos hoy</p>
                     <h2 class="display-4 fw-bold text-white">847</h2>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <!-- Tarjeta: total de puertas activas -->
                 <div class="p-4 card-custom text-center">
                     <p class="text-secondary-custom mb-1 small">Puertas activas</p>
                     <h2 class="display-4 fw-bold text-info">24/24</h2>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <!-- Tarjeta: número de alarmas -->
                 <div class="p-4 card-custom text-center">
                     <p class="text-secondary-custom mb-1 small">Alarmas</p>
                     <h2 class="display-4 fw-bold text-danger">3</h2>
@@ -42,14 +53,18 @@
         </div>
     </section>
 
+    <!-- Sección de funcionalidades principales -->
     <section id="caracteristicas" class="container py-5">
         <div class="text-center mb-5">
             <h2 class="fw-bold h1 text-white">Funcionalidades Principales</h2>
+            <!-- Separador decorativo bajo el título -->
             <div class="linea-decorativa"></div>
         </div>
 
+        <!-- Fila con las tarjetas de los módulos -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col" data-aos="fade-up" data-aos-delay="0">
+                <!-- Acceso al módulo de personas -->
                 <a href="{{ url('/modulos/personas') }}" class="p-4 card-func d-block text-decoration-none" style="color: inherit;">
                     <div class="icon-box"><i class="bi bi-people-fill"></i></div>
                     <h5 class="text-white">Registro de personal</h5>
@@ -57,6 +72,7 @@
                 </a>
             </div>
             <div class="col" data-aos="fade-up" data-aos-delay="100">
+                <!-- Acceso al módulo de equipos -->
                 <a href="{{ url('/modulos/equipos') }}" class="p-4 card-func d-block text-decoration-none" style="color: inherit;">
                     <div class="icon-box"><i class="bi bi-laptop"></i></div>
                     <h5 class="text-white">Inventario de equipos</h5>
@@ -64,6 +80,7 @@
                 </a>
             </div>
             <div class="col" data-aos="fade-up" data-aos-delay="200">
+                <!-- Acceso al módulo de visitantes -->
                 <a href="{{ url('/modulos/visitantes') }}" class="p-4 card-func d-block text-decoration-none" style="color: inherit;">
                     <div class="icon-box"><i class="bi bi-shield-check"></i></div>
                     <h5 class="text-white">Control de visitantes</h5>
@@ -73,8 +90,10 @@
         </div>
     </section>
 
+    <!-- Sección "Acerca de nosotros" -->
     <section id="nosotros" class="container py-5">
         <div class="row g-5">
+            <!-- Columna izquierda: historia y propósito del proyecto -->
             <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-right">
                 <span class="text-cyan text-uppercase fw-bold tracking-wider small mb-3">Acerca de nosotros</span>
                 <h2 class="titulo-nosotros-bold mb-4">
@@ -90,6 +109,7 @@
                 </p>
             </div>
 
+            <!-- Columna derecha: integrantes y tecnologías del equipo -->
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="card-equipo-container p-4">
                     <span class="text-cyan-light text-uppercase fw-bold small mb-3 d-block">Nuestro Equipo</span>
@@ -98,6 +118,7 @@
                     </p>
 
                     <div class="d-flex flex-column gap-3 mb-4">
+                        <!-- Tarjeta de un miembro del equipo -->
                         <div class="role-card p-3 d-flex align-items-center gap-3">
                             <div class="avatar-box">KM</div>
                             <div>
@@ -106,6 +127,7 @@
                             </div>
                         </div>
 
+                        <!-- Tarjeta de otro miembro del equipo -->
                         <div class="role-card p-3 d-flex align-items-center gap-3">
                             <div class="avatar-box">JM</div>
                             <div>
@@ -116,6 +138,7 @@
 
                     </div>
 
+                    <!-- Etiquetas con las tecnologías usadas en el proyecto -->
                     <div class="d-flex flex-wrap gap-2 pt-3 border-top border-dark-custom">
                         <span class="badge-tech">PHP</span>
                         <span class="badge-tech">MySQL</span>
@@ -129,6 +152,7 @@
         </div>
     </section>
 
+    <!-- Sección de preguntas frecuentes -->
     <section id="faq" class="container py-5">
         <div class="text-center mb-5">
             <h2 class="fw-bold h1 text-white">Preguntas Frecuentes</h2>
@@ -136,9 +160,11 @@
         </div>
 
         <div class="row g-4">
+            <!-- Columna izquierda: preguntas generales -->
             <div class="col-md-6">
                 <span class="text-cyan text-uppercase fw-bold tracking-wider small mb-3 d-block">General</span>
 
+                <!-- Pregunta 1: qué es SCAPE -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="0">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g1">
                         <span class="text-white fw-bold">¿Qué es SCAPE?</span>
@@ -149,6 +175,7 @@
                     </div>
                 </div>
 
+                <!-- Pregunta 2: conocimientos técnicos -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="100">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g2">
                         <span class="text-white fw-bold">¿Necesito conocimientos técnicos?</span>
@@ -159,6 +186,7 @@
                     </div>
                 </div>
 
+                <!-- Pregunta 3: precio -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="200">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g3">
                         <span class="text-white fw-bold">¿Cuánto cuesta?</span>
@@ -169,6 +197,7 @@
                     </div>
                 </div>
 
+                <!-- Pregunta 4: seguridad de datos -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="300">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-g4">
                         <span class="text-white fw-bold">¿Mis datos están seguros?</span>
@@ -180,9 +209,11 @@
                 </div>
             </div>
 
+            <!-- Columna derecha: preguntas por producto -->
             <div class="col-md-6">
                 <span class="text-cyan text-uppercase fw-bold tracking-wider small mb-3 d-block">Por producto</span>
 
+                <!-- Pregunta: cómo funciona el control de acceso -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="0">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p1">
                         <span class="text-white fw-bold">¿Cómo funciona el control de acceso?</span>
@@ -193,6 +224,7 @@
                     </div>
                 </div>
 
+                <!-- Pregunta: registro de equipos múltiples -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="100">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p2">
                         <span class="text-white fw-bold">¿Puedo registrar equipos múltiples?</span>
@@ -203,6 +235,7 @@
                     </div>
                 </div>
 
+                <!-- Pregunta: manejo de visitantes -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="200">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p3">
                         <span class="text-white fw-bold">¿Cómo se manejan los visitantes?</span>
@@ -213,6 +246,7 @@
                     </div>
                 </div>
 
+                <!-- Pregunta: reportes que genera el sistema -->
                 <div class="card-custom mb-3" data-aos="fade-up" data-aos-delay="300">
                     <button class="faq-toggle w-100 text-start bg-transparent border-0 p-3 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#faq-p4">
                         <span class="text-white fw-bold">¿Qué reportes genera el sistema?</span>
@@ -226,33 +260,42 @@
         </div>
     </section>
 
+    <!-- Sección de contacto -->
     <section id="contacto" class="container py-5">
         <div class="card card-custom px-5 py-4" data-aos="zoom-in">
             <div class="row">
+                <!-- Columna izquierda: datos de contacto -->
                 <div class="col-md-6">
                     <h2 class="fw-bold h1 text-white mb-4">Contáctanos</h2>
                     <p class="text-secondary-custom mb-4">¿Tienes dudas o necesitas una demostración personalizada? Nuestro equipo de soporte técnico 24/7 está listo para ayudarte.</p>
+                    <!-- Lista con los canales de contacto -->
                     <ul class="list-unstyled mt-4 contact-list">
                         <li class="mb-3 text-secondary-custom"><i class="bi bi-envelope-fill text-accent-custom me-2"></i> soporte@scape.com</li>
                         <li class="mb-3 text-secondary-custom"><i class="bi bi-telephone-fill text-accent-custom me-2"></i> +57 (601) 123 4567</li>
                         <li class="text-secondary-custom"><i class="bi bi-geo-alt-fill text-accent-custom me-2"></i> Ibagué, Tolima</li>
                     </ul>
                 </div>
+                <!-- Columna derecha: formulario de contacto -->
                 <div class="col-md-6">
                     <form>
+                        <!-- Campo del nombre del usuario -->
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="Tu nombre">
                         </div>
+                        <!-- Campo del correo electrónico -->
                         <div class="mb-3">
                             <input type="email" class="form-control" placeholder="Tu correo electrónico">
                         </div>
+                        <!-- Campo de mensaje -->
                         <div class="mb-3">
                             <textarea class="form-control" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
                         </div>
+                        <!-- Botón para enviar el mensaje -->
                         <button type="button" class="btn btn-primary-custom w-100">Enviar mensaje</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+{{-- Fin del bloque de contenido --}}
 @endsection

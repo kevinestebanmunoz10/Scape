@@ -1,8 +1,12 @@
+{{-- Vista del módulo de equipos: extiende el layout principal --}}
 @extends('layouts.app')
 
+{{-- Título de la página --}}
 @section('title', 'SCAPE - Gestión de Equipos')
 
+{{-- Inicio del bloque de contenido --}}
 @section('content')
+<!-- Encabezado del módulo -->
 <section class="module-hero text-center text-white">
     <div class="container">
         <br>
@@ -13,8 +17,10 @@
     </div>
 </section>
 
+<!-- Sección de características del módulo -->
 <section class="container py-5">
     <div class="row g-4 mb-5">
+        <!-- Tarjeta: inventario -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-laptop display-4 text-cyan"></i>
@@ -22,6 +28,7 @@
                 <p class="text-secondary-custom small m-0">Control total de equipos con registro detallado.</p>
             </div>
         </div>
+        <!-- Tarjeta: entradas y salidas -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-arrow-repeat display-4 text-cyan"></i>
@@ -29,6 +36,7 @@
                 <p class="text-secondary-custom small m-0">Registra asignación y devolución de equipos.</p>
             </div>
         </div>
+        <!-- Tarjeta: trazabilidad -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-search display-4 text-cyan"></i>
@@ -39,6 +47,7 @@
     </div>
 
     <div class="row g-4 align-items-center">
+        <!-- Columna con la lista de funcionalidades -->
         <div class="col-lg-6" data-aos="fade-left">
             <div class="card-custom p-4">
                 <ul class="list-unstyled">
@@ -50,6 +59,7 @@
                 </ul>
             </div>
         </div>
+        <!-- Columna de texto descriptivo -->
         <div class="col-lg-6" data-aos="fade-right">
             <h2 class="fw-bold h1 text-white mb-4">Trazabilidad total</h2>
             <p class="text-secondary-custom mb-3">Cada equipo queda registrado en el sistema con su historial completo. Sabrás siempre dónde está, quién lo usa y en qué estado se encuentra.</p>
@@ -57,4 +67,5 @@
         </div>
     </div>
 </section>
+{{-- Fin del bloque de contenido --}}
 @endsection

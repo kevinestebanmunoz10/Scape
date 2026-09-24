@@ -1,8 +1,12 @@
+{{-- Vista del módulo de personas: extiende el layout principal --}}
 @extends('layouts.app')
 
+{{-- Título de la página --}}
 @section('title', 'SCAPE - Control de Personas')
 
+{{-- Inicio del bloque de contenido --}}
 @section('content')
+<!-- Encabezado del módulo -->
 <section class="module-hero text-center text-white">
     <div class="container">
         <br>
@@ -13,8 +17,10 @@
     </div>
 </section>
 
+<!-- Sección de características del módulo -->
 <section class="container py-5">
     <div class="row g-4 mb-5">
+        <!-- Tarjeta: registro rápido -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-people-fill display-4 text-cyan"></i>
@@ -22,6 +28,7 @@
                 <p class="text-secondary-custom small m-0">Crea perfiles de personal en segundos con QR del carnet.</p>
             </div>
         </div>
+        <!-- Tarjeta: autorización -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-shield-check display-4 text-cyan"></i>
@@ -29,6 +36,7 @@
                 <p class="text-secondary-custom small m-0">Control de entrada y salida con permisos por rol.</p>
             </div>
         </div>
+        <!-- Tarjeta: visibilidad -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card-custom text-center p-4">
                 <i class="bi bi-graph-up display-4 text-cyan"></i>
@@ -39,11 +47,13 @@
     </div>
 
     <div class="row g-4 align-items-center">
+        <!-- Columna de texto descriptivo -->
         <div class="col-lg-6" data-aos="fade-right">
             <h2 class="fw-bold h1 text-white mb-4">Gestión integral del personal</h2>
             <p class="text-secondary-custom mb-3">SCAPE centraliza toda la información del personal en un solo lugar. Desde el registro inicial hasta el control diario de accesos, todo accesible desde una interfaz intuitiva.</p>
             <p class="text-secondary-custom">Diseñado para instituciones educativas que necesitan saber en todo momento quiénes están en sus instalaciones.</p>
         </div>
+        <!-- Columna con la lista de funcionalidades -->
         <div class="col-lg-6" data-aos="fade-left">
             <div class="card-custom p-4">
                 <ul class="list-unstyled">
@@ -57,4 +67,5 @@
         </div>
     </div>
 </section>
+{{-- Fin del bloque de contenido --}}
 @endsection

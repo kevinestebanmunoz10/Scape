@@ -2,156 +2,179 @@
    ESTILOS GENERALES - SCAPE
    ============================================================ */
 
+/* Variables CSS globales: definen la paleta de colores del sitio */
 :root {
-    --primary-color: #0d6efd;
-    --dark-bg: #0f172a;
-    --card-bg: #1e293b;
-    --accent-color: #38bdf8;
-    --text-muted: #94a3b8;
+    --primary-color: #0d6efd; /* color principal / primario */
+    --dark-bg: #0f172a; /* fondo oscuro general */
+    --card-bg: #1e293b; /* fondo de las tarjetas */
+    --accent-color: #38bdf8; /* color de acento (azul claro) */
+    --text-muted: #94a3b8; /* color de texto atenuado */
 }
 
+/* Estilos base del elemento raíz: ajusta el tamaño base de la fuente */
 html {
-    font-size: 19px;
+    font-size: 19px; /* tamaño de fuente base para las rem */
 }
 
+/* Estilos generales del cuerpo de la página */
 body {
-    font-family: 'Product Sans', sans-serif;
-    background-color: var(--dark-bg);
-    color: #f8fafc;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+    font-family: 'Product Sans', sans-serif; /* fuente principal */
+    background-color: var(--dark-bg); /* fondo oscuro global */
+    color: #f8fafc; /* color de texto principal */
+    overflow-x: hidden; /* evita scroll horizontal */
+    scroll-behavior: smooth; /* desplazamiento suave entre anclas */
 }
 
+/* Tipografía compartida por títulos y la marca de la barra de navegación */
 h1, h2, h3, .navbar-brand {
     font-family: 'Product Sans', sans-serif;
 }
 
 /* Navbar */
+/* Estilos de la barra de navegación */
 .navbar {
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.8); /* fondo semitransparente */
+    backdrop-filter: blur(10px); /* efecto de desenfoque del fondo */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* borde inferior sutil */
 }
 
+/* Transición de color en los enlaces de navegación */
 .nav-link {
-    transition: color 0.3s;
+    transition: color 0.3s; /* anima el cambio de color al hacer hover */
 }
 
+/* Color de acento al pasar el cursor sobre los enlaces de navegación */
 .nav-link:hover {
-    color: var(--accent-color) !important;
+    color: var(--accent-color) !important; /* fuerza el color de acento */
 }
 
 /* Hero Section */
+/* Estilos de la sección principal (hero) */
 .hero-section {
-    padding: 100px 0;
-    background: radial-gradient(circle at top right, rgba(13, 110, 253, 0.15), transparent);
+    padding: 100px 0; /* espaciado vertical generoso */
+    background: radial-gradient(circle at top right, rgba(13, 110, 253, 0.15), transparent); /* resplandor decorativo superior derecho */
 }
 
+/* Estilos del título de gran impacto del hero */
 .titulo-impacto {
-    font-size: 3.5rem;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    font-size: 3.5rem; /* texto grande */
+    line-height: 1.2; /* interlineado compacto */
+    margin-bottom: 1.5rem; /* separación inferior */
 }
 
+/* Colorea de acento el span (palabra destacada) dentro del título */
 .titulo-impacto span {
     color: var(--accent-color);
 }
 
 /* Tarjetas */
+/* Estilos base de las tarjetas personalizadas */
 .card-custom {
-    background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 16px;
-    height: 100%;
+    background: var(--card-bg); /* fondo de tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* borde sutil claro */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* anima elevación y sombra */
+    border-radius: 16px; /* esquinas redondeadas */
+    height: 100%; /* iguala altura dentro de su fila */
 }
 
+/* Efecto de elevación al pasar el cursor sobre las tarjetas */
 .card-custom:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-color);
+    transform: translateY(-10px); /* la tarjeta se levanta */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); /* sombra profunda */
+    border-color: var(--accent-color); /* resalta el borde con el acento */
 }
 
+/* Estilos de las tarjetas de funcionalidades */
 .card-func {
-    background: rgba(30, 41, 59, 0.5);
+    background: rgba(30, 41, 59, 0.5); /* fondo translúcido */
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    height: 100%;
-    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* borde muy sutil */
+    height: 100%; /* altura uniforme */
+    transition: all 0.3s; /* transición general */
 }
 
+/* Efecto hover de las tarjetas de funcionalidades */
 .card-func:hover {
-    background: rgba(30, 41, 59, 0.8);
-    border-color: rgba(56, 189, 248, 0.3);
+    background: rgba(30, 41, 59, 0.8); /* fondo más opaco */
+    border-color: rgba(56, 189, 248, 0.3); /* borde en tono acento */
 }
 
+/* Contenedor cuadrado del icono dentro de las tarjetas */
 .icon-box {
     width: 50px;
     height: 50px;
-    background: rgba(56, 189, 248, 0.1);
-    color: var(--accent-color);
+    background: rgba(56, 189, 248, 0.1); /* fondo traslúcido azul */
+    color: var(--accent-color); /* icono en color acento */
     border-radius: 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* centra verticalmente el icono */
+    justify-content: center; /* centra horizontalmente el icono */
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
 /* Decoración */
+/* Línea decorativa que separa contenido */
 .linea-decorativa {
     width: 60px;
     height: 4px;
-    background: var(--accent-color);
+    background: var(--accent-color); /* color de acento */
     border-radius: 2px;
-    margin: 1rem auto;
+    margin: 1rem auto; /* centrada horizontalmente */
 }
 
+/* Variante para alinear la línea a la izquierda */
 .linea-decorativa.ms-0 {
-    margin-left: 0;
+    margin-left: 0; /* elimina el auto-centrado */
 }
 
 /* Botones */
+/* Estilos del botón principal personalizado */
 .btn-primary-custom {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* fondo del botón */
     border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
+    padding: 12px 30px; /* relleno interno */
+    border-radius: 50px; /* botón tipo píldora */
     font-weight: 600;
     color: white;
     text-decoration: none;
     display: inline-block;
-    transition: all 0.3s;
+    transition: all 0.3s; /* transición de todas las propiedades */
 }
 
+/* Efecto hover del botón principal */
 .btn-primary-custom:hover {
-    background-color: #0b5ed7;
-    transform: scale(1.05);
+    background-color: #0b5ed7; /* variante más oscura del azul */
+    transform: scale(1.05); /* se agranda ligeramente */
     color: white;
 }
 
 /* Secciones */
+/* Compensación del scroll al navegar a cada sección por anclas */
 section {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 80px; /* deja margen superior para la navbar fija */
 }
 
 /* Footer Antiguo (Mantenido por compatibilidad) */
+/* Estilos del pie de página clásico */
 .footer-custom {
-    background: #020617;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: #020617; /* fondo casi negro */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* borde superior sutil */
 }
 
 /* Formulario */
+/* Estilos de los campos de formulario */
 .form-control {
-    background-color: rgba(15, 23, 42, 0.5) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    color: white !important;
+    background-color: rgba(15, 23, 42, 0.5) !important; /* fondo translúcido oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* borde sutil */
+    color: white !important; /* texto claro */
     padding: 12px;
 }
 
+/* Resaltado del campo al recibir el foco */
 .form-control:focus {
-    border-color: var(--accent-color) !important;
-    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.25) !important;
+    border-color: var(--accent-color) !important; /* borde en color acento */
+    box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.25) !important; /* halo azul suave */
 }
 
 /* ============================================================
@@ -159,91 +182,107 @@ section {
    ============================================================ */
 
 /* Corrección radical para forzar que text-muted y text-secondary usen tu color claro */
+/* Asegura que los textos atenuados utilicen el color claro definido */
 .text-muted, .text-secondary-custom {
     color: var(--text-muted) !important;
 }
 
 /* Corrección de inputs, placeholders e iconos en Contáctanos */
+/* Texto resaltado en color de acento para secciones de contacto */
 .text-accent-custom {
     color: var(--accent-color) !important;
 }
 
+/* Placeholder legible dentro de los campos de formulario */
 .form-control::placeholder {
     color: rgba(248, 250, 252, 0.5) !important; /* Texto del placeholder claro y legible */
 }
 
 /* Estilos para Acerca de Nosotros (image_502b22.png) */
+/* Texto en color cian */
 .text-cyan {
     color: #00bacf;
 }
+/* Texto en color cian más brillante */
 .text-cyan-light {
     color: #00d2ff;
 }
+/* Espaciado entre letras aumentado para titulares */
 .tracking-wider {
     letter-spacing: 0.1em;
 }
+/* Título principal de la sección "Nosotros" */
 .titulo-nosotros-bold {
     font-family: 'Product Sans', sans-serif;
-    font-weight: 800;
+    font-weight: 800; /* muy grueso */
     font-size: 2.8rem;
     color: #ffffff;
     line-height: 1.1;
 }
+/* Texto con degradado cian (color fijo) */
 .text-gradient-cyan {
     color: #00d2ff;
 }
 
 /* Tarjeta contenedora del equipo */
+/* Contenedor general de las tarjetas del equipo */
 .card-equipo-container {
     background-color: #0d1527; 
     border: 1px solid #1e293b;
     border-radius: 16px;
 }
+/* Tarjeta de cada rol del equipo */
 .role-card {
     background-color: #131f37;
     border-radius: 12px;
-    transition: transform 0.2s;
+    transition: transform 0.2s; /* anima el desplazamiento al hacer hover */
 }
+/* Recuadro del avatar/inicial del miembro */
 .avatar-box {
     width: 48px;
     height: 48px;
     border-radius: 8px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* centra verticalmente el contenido */
+    justify-content: center; /* centra horizontalmente el contenido */
     font-weight: bold;
     font-size: 0.85rem;
     color: #fff;
-    background: linear-gradient(135deg, #1e40af, #0284c7);
+    background: linear-gradient(135deg, #1e40af, #0284c7); /* degradado azul */
 }
+/* Corrige el color de los bordes oscuros */
 .border-dark-custom {
     border-color: #1e293b !important;
 }
+/* Insignias de tecnologías */
 .badge-tech {
     background-color: #0f172a;
     color: #38bdf8;
     border: 1px solid #334155;
     padding: 4px 12px;
-    border-radius: 20px;
+    border-radius: 20px; /* píldora */
     font-size: 0.75rem;
 }
 
 /* Estilos del Nuevo Footer (image_502843.png) */
+/* Contenedor principal del nuevo pie de página */
 .footer-scape-custom {
     background-color: #090f1c; 
     border-top: 1px solid #1e293b;
 }
+/* Icono de escudo de la marca */
 .brand-icon-shield {
     width: 40px;
     height: 40px;
     border: 1px solid #00bacf;
     border-radius: 8px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* centra verticalmente el icono */
+    justify-content: center; /* centra horizontalmente el icono */
     color: #00bacf;
     font-size: 1.2rem;
 }
+/* Título de la marca en el footer */
 .footer-brand-title {
     font-family: 'Product Sans', sans-serif;
     font-weight: 800;
@@ -252,84 +291,98 @@ section {
     letter-spacing: 1px;
     line-height: 1;
 }
+/* Subtítulo pequeño bajo la marca */
 .footer-brand-subtitle {
     font-size: 0.65rem;
     color: #94a3b8;
     letter-spacing: 2px;
 }
+/* Títulos de cada columna/sección del footer */
 .footer-section-title {
     font-size: 0.85rem;
     letter-spacing: 1px;
 }
+/* Enlaces normales del footer */
 .footer-link {
     color: #94a3b8;
     text-decoration: none;
     font-size: 0.9rem;
-    transition: color 0.2s;
+    transition: color 0.2s; /* anima el cambio de color */
 }
+/* Enlaces del footer al pasar el cursor */
 .footer-link:hover {
     color: #00d2ff;
 }
 
 /* Cookie Banner - bloquea la página hasta aceptación */
+/* Capa oscura que cubre toda la página detrás del banner */
 .cookie-overlay {
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 9998;
-    transition: opacity 0.4s ease;
+    inset: 0; /* ocupa toda la pantalla */
+    background: rgba(0,0,0,0.6); /* oscurece el fondo */
+    z-index: 9998; /* por debajo del banner */
+    transition: opacity 0.4s ease; /* desvanecimiento suave */
 }
+/* Estado oculto del overlay (invisible e intransitable) */
 .cookie-overlay.hidden {
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none; /* no recibe clics */
 }
+/* Banner de cookies fijo en la parte inferior */
 .cookie-banner {
     position: fixed;
-    bottom: 0; left: 0; right: 0;
+    bottom: 0; left: 0; right: 0; /* anclado al fondo */
     background: var(--dark-bg);
-    border-top: 1px solid rgba(56,189,248,0.3);
+    border-top: 1px solid rgba(56,189,248,0.3); /* borde superior azulado */
     padding: 1rem 0;
-    z-index: 9999;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    z-index: 9999; /* por encima del overlay */
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3); /* sombra hacia arriba */
+    transition: transform 0.4s ease, opacity 0.4s ease; /* anima entrada/salida */
 }
+/* Estado oculto del banner (se desliza hacia abajo) */
 .cookie-banner.hidden {
     transform: translateY(100%);
     opacity: 0;
     pointer-events: none;
 }
+/* Panel (modal) de configuración de cookies */
 .cookie-panel {
     position: fixed;
-    inset: 0;
-    z-index: 10000;
+    inset: 0; /* cubre toda la pantalla */
+    z-index: 10000; /* por encima de todo */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* centra verticalmente el modal */
+    justify-content: center; /* centra horizontalmente el modal */
     padding: 1rem;
-    opacity: 0;
+    opacity: 0; /* inicialmente invisible */
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
+/* Estado visible del panel de cookies */
 .cookie-panel.show {
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: auto; /* vuelve a aceptar clics */
 }
+/* Caja del modal de cookies */
 .cookie-panel-box {
     background: var(--dark-bg);
     border: 1px solid rgba(56,189,248,0.3);
     border-radius: 16px;
     padding: 2rem;
-    max-width: 460px;
+    max-width: 460px; /* ancho máximo */
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5); /* sombra profunda */
 }
+/* Título dentro de la caja de cookies */
 .cookie-panel-box h4 {
     font-family: 'Product Sans', sans-serif;
 }
+/* Checkbox de cada opción de cookie */
 .cookie-option .form-check-input {
     background-color: var(--card-bg);
     border-color: rgba(255,255,255,0.2);
 }
+/* Checkbox de cookie cuando está marcada */
 .cookie-option .form-check-input:checked {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
@@ -338,74 +391,89 @@ section {
 /* ============================================================
    PLANES
    ============================================================ */
+/* Sección general de planes con espaciado vertical */
 .planes-section { padding: 80px 0; }
+/* Tarjeta individual de un plan */
 .plan-card {
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 16px;
     padding: 2.5rem 2rem;
     display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    height: 100%;
+    flex-direction: column; /* apila los elementos verticalmente */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* anima hover */
+    height: 100%; /* altura uniforme */
 }
+/* Elevación de las tarjetas de plan al hacer hover */
 .plan-card:hover {
     transform: translateY(-8px);
     border-color: var(--accent-color);
 }
+/* Destaca el plan más popular con borde y brillo */
 .plan-card.featured {
     border-color: var(--accent-color);
-    box-shadow: 0 0 30px rgba(56,189,248,0.15);
+    box-shadow: 0 0 30px rgba(56,189,248,0.15); /* halo de acento */
     position: relative;
 }
+/* Insignia "Popular" sobre el plan destacado */
 .plan-card.featured::before {
-    content: 'Popular';
+    content: 'Popular'; /* texto de la insignia */
     position: absolute;
-    top: -12px; left: 50%; transform: translateX(-50%);
-    background: linear-gradient(135deg, #1e40af, #0284c7);
+    top: -12px; left: 50%; transform: translateX(-50%); /* centrado en la parte superior */
+    background: linear-gradient(135deg, #1e40af, #0284c7); /* degradado azul */
     color: #fff;
     font-size: 0.7rem;
     font-weight: 700;
     padding: 4px 18px;
-    border-radius: 20px;
+    border-radius: 20px; /* píldora */
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-transform: uppercase; /* texto en mayúsculas */
 }
+/* Nombre del plan */
 .plan-title {
     font-weight: 700;
     color: #fff;
     margin-bottom: 0.5rem;
 }
+/* Precio principal del plan */
 .plan-price {
     font-size: 2.6rem;
     font-weight: 800;
     color: #fff;
     line-height: 1;
 }
+/* Subparte del precio (período o moneda) */
 .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+/* Texto informativo del precio anual */
 .plan-price-annual {
     font-size: 0.85rem;
     color: var(--accent-color);
     margin-bottom: 1.25rem;
 }
+/* Tachado del precio mensual original (en el plan anual) */
 .plan-price-annual s { color: var(--text-muted); }
+/* Lista de características del plan */
 .plan-features {
-    list-style: none;
+    list-style: none; /* sin viñetas */
     padding: 0;
     margin: 0 0 2rem 0;
-    flex-grow: 1;
+    flex-grow: 1; /* ocupa el espacio restante para alinear botones */
 }
+/* Cada característica de la lista */
 .plan-features li {
     color: var(--text-muted);
     font-size: 0.9rem;
     padding: 6px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05); /* separador sutil */
     display: flex;
-    align-items: center;
+    align-items: center; /* centra el icono verticalmente */
     gap: 8px;
 }
+/* Elimina el separador inferior de la última característica */
 .plan-features li:last-child { border-bottom: none; }
+/* Iconos de verificación de cada característica */
 .plan-features li i { color: var(--accent-color); font-size: 0.8rem; }
+/* Contenedor del interruptor mensual/anual */
 .toggle-wrap {
     display: flex;
     align-items: center;
@@ -415,15 +483,18 @@ section {
     color: var(--text-muted);
     font-weight: 500;
 }
+/* Interruptor deslizante de facturación */
 .toggle-switch {
-    width: 48px; height: 26px;
+    width: 48px; height: 26px; /* tamaño del interruptor */
     background: rgba(255,255,255,0.15);
     border-radius: 13px;
     position: relative;
-    cursor: pointer;
+    cursor: pointer; /* indica que es interactivo */
     transition: background 0.3s;
 }
+/* Estado activo (anual) del interruptor */
 .toggle-switch.active { background: var(--primary-color); }
+/* Círculo deslizante del interruptor */
 .toggle-switch::after {
     content: '';
     width: 20px; height: 20px;
@@ -431,14 +502,17 @@ section {
     border-radius: 50%;
     position: absolute;
     top: 3px; left: 3px;
-    transition: transform 0.3s;
+    transition: transform 0.3s; /* anima el deslizamiento */
 }
+/* Mueve el círculo a la derecha cuando está activo */
 .toggle-switch.active::after { transform: translateX(22px); }
+/* Los precios anuales se ocultan por defecto */
 .plan-annual { display: none; }
+/* Estilos base del botón dentro de cada plan */
 .btn-plan {
     width: 100%;
     padding: 12px;
-    border-radius: 50px;
+    border-radius: 50px; /* píldora */
     font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
@@ -446,43 +520,52 @@ section {
     transition: all 0.3s;
     display: inline-block;
 }
+/* Botón de plan con estilo contorneado */
 .btn-plan-outline {
     background: transparent;
     border: 1px solid rgba(255,255,255,0.2);
     color: #fff;
 }
+/* Hover del botón contorneado */
 .btn-plan-outline:hover {
     border-color: var(--accent-color);
     color: var(--accent-color);
 }
+/* Botón de plan con relleno (degradado) */
 .btn-plan-fill {
-    background: linear-gradient(135deg, #1e40af, #0284c7);
+    background: linear-gradient(135deg, #1e40af, #0284c7); /* degradado azul */
     border: none;
     color: #fff;
 }
+/* Hover del botón relleno */
 .btn-plan-fill:hover {
     transform: scale(1.03);
-    box-shadow: 0 6px 20px rgba(2,132,199,0.4);
+    box-shadow: 0 6px 20px rgba(2,132,199,0.4); /* sombra azulada */
     color: #fff;
 }
+/* Encabezado (hero) de la sección de planes */
 .planes-hero {
     text-align: center;
     padding: 60px 0 20px;
 }
+/* Título del hero de planes */
 .planes-hero h1 { color: #fff; font-weight: 800; margin-bottom: 1rem; }
+/* Párrafo descriptivo del hero de planes */
 .planes-hero p { color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+/* Botón del hero de planes */
 .btn-plan-hero {
     display: inline-block;
     margin-top: 1.5rem;
     padding: 13px 32px;
     border-radius: 50px;
-    background: linear-gradient(135deg, #1e40af, #0284c7);
+    background: linear-gradient(135deg, #1e40af, #0284c7); /* degradado azul */
     color: #fff;
     font-weight: 700;
     font-size: 1rem;
     text-decoration: none;
     transition: all 0.3s;
 }
+/* Hover del botón del hero de planes */
 .btn-plan-hero:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 20px rgba(2,132,199,0.4);
@@ -492,9 +575,11 @@ section {
 /* ============================================================
    F.A.Q.
    ============================================================ */
+/* Tarjetas de las preguntas frecuentes con altura automática */
 #faq .card-custom {
     height: auto;
 }
+/* Desactiva el efecto de elevación en las tarjetas de FAQ */
 #faq .card-custom:hover {
     transform: none;
 }
