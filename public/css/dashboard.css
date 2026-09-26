@@ -111,6 +111,25 @@ h1.title { font-size:34px; font-weight:700; }
 /* Subtítulo de la estadística */
 .stat-card .sub { font-size:13px; color:#8891a3; }
 
+/* Cuadrícula de los módulos de gestión: 3 botones que reparten todo el ancho */
+.gestion-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:22px;
+}
+/* Botón de un módulo de gestión */
+.gestion-card {
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  background:#131c34; border:1px solid transparent; border-radius:14px; padding:40px 24px;
+  color:inherit; text-decoration:none; /* evita el subrayado y color azul que hereda de Bootstrap */
+  transition:background .15s ease, border-color .15s ease;
+}
+/* Efecto hover del botón de módulo */
+.gestion-card:hover { background:#1c2650; border-color:#3a4a72; }
+/* Título del botón de módulo */
+.gestion-card h3 { font-size:17px; font-weight:600; color:#c3c9d8; margin:0; }
+/* Módulo que todavía no tiene CRUD propio */
+.gestion-card.disabled { opacity:.5; cursor:not-allowed; }
+.gestion-card.disabled:hover { background:#131c34; border-color:transparent; }
+
 /* Cuadrícula inferior con tablas y paneles */
 .bottom-grid {
   display:grid; grid-template-columns:1.7fr 1fr; gap:20px; /* tabla más ancha que el panel lateral */
@@ -365,6 +384,7 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 /* Media query: pantallas de hasta 900px (tabletas/móviles) */
 @media (max-width:900px) {
   .stats-grid { grid-template-columns:repeat(2,1fr); } /* estadísticas en 2 columnas */
+  .gestion-grid { grid-template-columns:repeat(2,1fr); } /* módulos de gestión en 2 columnas */
   .bottom-grid { grid-template-columns:1fr; } /* paneles en una sola columna */
   .vigilante-actions { grid-template-columns:1fr; } /* acciones apiladas verticalmente */
   .main { padding:22px 18px; } /* reduce el espaciado del contenido */
@@ -382,6 +402,7 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 /* Media query: pantallas de hasta 520px (móviles pequeños) */
 @media (max-width:520px) {
   .stats-grid { grid-template-columns:1fr; } /* una sola columna de estadísticas */
+  .gestion-grid { grid-template-columns:1fr; } /* una sola columna de módulos de gestión */
   .header-row { justify-content:flex-start; flex-wrap:wrap; gap:10px; }
   .date-filter { font-size:13px; flex-wrap:wrap; }
   /* Las pestañas de accesos ocupan todo el ancho y reparten los ítems */
@@ -550,6 +571,41 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
 /* Bloque de eliminación con separador superior */
 .delete-block { margin-top:22px; padding-top:20px; border-top:1px solid #1c2540; }
 
+/* Bloque de una sección del formulario con título propio */
+.form-section { margin-top:26px; padding-top:22px; border-top:1px solid #1c2540; }
+/* Título de la sección dentro del formulario */
+.form-section-title { font-size:15px; font-weight:700; color:#e8ebf1; margin:0 0 4px; }
+/* Texto auxiliar que explica el uso de la sección */
+.form-section-text { font-size:12px; color:#8891a3; margin:0 0 16px; }
+/* Lista de filas repetibles de acudientes */
+.acudientes-rows { display:flex; flex-direction:column; gap:14px; }
+/* Título de cada bloque de acudientes dentro de la sección */
+.acudientes-bloque-title { font-size:14px; font-weight:700; color:#e8ebf1; margin:0 0 14px; }
+/* Separación del segundo bloque para que no quede pegado al botón del anterior */
+.acudientes-actions + .acudientes-bloque-title { margin-top:28px; padding-top:24px; border-top:1px solid #1c2540; }
+/* Fila con un acudiente del catálogo y su parentesco */
+.acudientes-row { display:grid; grid-template-columns:1fr 1fr auto; gap:12px; align-items:end; }
+/* Fila con los datos de un acudiente nuevo */
+.acudientes-row.nuevo { grid-template-columns:repeat(3,1fr); }
+/* Botón para quitar una fila de acudiente */
+.acudientes-remove {
+  background:transparent; border:1px solid #232d4a; border-radius:9px; color:#8891a3;
+  padding:11px 14px; font-family:inherit; font-size:13px; cursor:pointer; white-space:nowrap;
+}
+.acudientes-remove:hover { background:#1c2650; color:#e74c3c; border-color:#3a2a4a; }
+/* Acciones para agregar más filas de acudientes */
+.acudientes-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+/* Etiquetas de los acudientes que el estudiante ya tenía vinculados */
+.acudientes-vinculados { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; padding:0; list-style:none; }
+/* Etiqueta individual de un acudiente ya vinculado */
+.acudientes-chip {
+  display:inline-flex; align-items:center; gap:7px; background:#0f1830; border:1px solid #232d4a;
+  border-radius:999px; padding:6px 12px; font-size:12px; color:#c3c9d8;
+}
+.acudientes-chip strong { color:#e8ebf1; font-weight:600; }
+/* Aviso cuando el estudiante seleccionado todavía no tiene acudientes */
+.acudientes-vacio { font-size:12px; color:#8891a3; margin:0 0 16px; }
+
 /* Alertas reutilizables */
 .alert { border-radius:10px; padding:13px 18px; font-size:14px; margin-bottom:20px; border:1px solid transparent; }
 /* Lista dentro de una alerta */
@@ -576,4 +632,6 @@ td:nth-child(2), td:nth-child(3) { color:#8891a3; }
   .search-form { flex:1; } /* el buscador ocupa el espacio disponible */
   .search-form input[type="text"] { min-width:0; flex:1; } /* el campo se adapta al ancho */
   .catalogos-grid { grid-template-columns:1fr; } /* catálogos en una sola columna */
+  .acudientes-row, .acudientes-row.nuevo { grid-template-columns:1fr; } /* filas de acudientes en una sola columna */
+  .acudientes-remove { width:100%; } /* el botón de quitar ocupa toda la fila */
 }

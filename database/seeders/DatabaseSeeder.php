@@ -29,6 +29,12 @@ class DatabaseSeeder extends Seeder
             ProfesorSeeder::class, // Llena los datos del profesor
             RectorSeeder::class, // Llena los datos del rector
             VigilanteSeeder::class, // Llena los datos del vigilante
+            EstudianteSeeder::class, // Llena los datos de los estudiantes
+            ParentescoSeeder::class, // Llena los parentescos disponibles para los acudientes
+            AcudienteSeeder::class, // Llena el catálogo de acudientes reutilizables
+            SalonSeeder::class, // Llena los salones disponibles para las matrículas
+            JornadaSeeder::class, // Llena el catálogo de jornadas escolares
+            SedeSeeder::class, // Llena las sedes de la institución
             TipoPermisoSeeder::class, // Llena los tipos de permiso de salida por defecto
         ]);
     }

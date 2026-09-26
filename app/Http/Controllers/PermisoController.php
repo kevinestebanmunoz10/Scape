@@ -34,7 +34,7 @@ class PermisoController extends Controller
             ->orderByDesc('autorizacion.id_autorizacion') // Ordena los permisos por el más reciente primero
             ->paginate(10); // Pagina los resultados de diez en diez
 
-        return view('admin.permisos', [ // Muestra la vista de permisos con los datos
+        return view('admin.permisos.index', [ // Muestra la vista de permisos con los datos
             'permisos' => $permisos, // Los permisos registrados y paginados
         ]);
     }
@@ -67,7 +67,7 @@ class PermisoController extends Controller
 
         $tipo = TipoPermiso::where('tipo', $permiso->Permiso)->first(); // Busca el tipo de permiso por su nombre
 
-        return view('admin.permisos_edit', [ // Muestra la vista de edición del permiso
+        return view('admin.permisos.edit', [ // Muestra la vista de edición del permiso
             'permiso' => $permiso, // El permiso que se está editando
             'estudiantes' => $this->estudiantes(), // Los estudiantes disponibles
             'acudientes' => $this->acudientes(), // Los acudientes disponibles
@@ -112,7 +112,7 @@ class PermisoController extends Controller
     {
         $tipos = TipoPermiso::orderBy('tipo')->get(); // Obtiene todos los tipos de permiso ordenados por nombre
 
-        return view('admin.permisos_tipos', [ // Muestra la vista del catálogo de tipos de permiso
+        return view('admin.permisos.tipos', [ // Muestra la vista del catálogo de tipos de permiso
             'tipos' => $tipos, // Los tipos de permiso disponibles
         ]);
     }

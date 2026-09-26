@@ -93,4 +93,23 @@ class User extends Authenticatable
         // El usuario pertenece a un rol mediante id_rol
         return $this->belongsTo(Rol::class, 'id_rol', 'id_rol');
     }
+
+    // Relación con la matrícula del estudiante
+    public function matricula()
+    {
+        // El usuario tiene a lo sumo una matrícula, referenciada por su documento
+        return $this->hasOne(Matricula::class, 'Documento_matri', 'Documento');
+    }
+
+    // Relación con los acudientes registrados para el estudiante
+    public function acudientes()
+    {
+        // El usuario se vincula con varios acudientes a través de la tabla estudiante_acudiente
+        return $this->belongsToMany(
+            Acudiente::class, // Modelo del otro lado del vínculo
+            'estudiante_acudiente', // Tabla intermedia
+            'Documento_estu', // Columna de esta tabla en el vínculo
+            'Documento_acud', // Columna del acudiente en el vínculo
+        )->withPivot('id_parentesco'); // Expone el parentesco guardado en el vínculo
+    }
 }

@@ -64,7 +64,7 @@ class AccesoController extends Controller
             ['path' => $request->url(), 'query' => $request->query()], // Conserva la URL y los filtros al paginar
         );
 
-        return view('admin.accesos', [ // Muestra la vista de accesos con los datos
+        return view('admin.accesos.index', [ // Muestra la vista de accesos con los datos
             'accesos' => $accesosPaginados, // Los accesos paginados
             'desde' => $desde, // La fecha inicial del filtro
             'hasta' => $hasta, // La fecha final del filtro
@@ -118,7 +118,7 @@ class AccesoController extends Controller
             ->paginate(10) // Pagina los resultados de a diez por página
             ->withQueryString(); // Conserva los filtros de la URL al paginar
 
-        return view('admin.accesos_equipos', [ // Muestra la vista de accesos de equipos con los datos
+        return view('admin.accesos.equipos', [ // Muestra la vista de accesos de equipos con los datos
             'equipos' => $equipos, // Los accesos de equipos paginados
             'desde' => $desde, // La fecha inicial del filtro
             'hasta' => $hasta, // La fecha final del filtro

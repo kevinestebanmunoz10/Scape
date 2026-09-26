@@ -3,11 +3,14 @@
 use App\Http\Controllers\AccesoController; // Controlador que gestiona el reporte de accesos
 use App\Http\Controllers\DashboardController; // Controlador que gestiona el panel del administrador
 use App\Http\Controllers\EquipoController; // Controlador que gestiona los equipos
+use App\Http\Controllers\GestionController; // Controlador que muestra el menú de gestión
+use App\Http\Controllers\MatriculaController; // Controlador que gestiona las matrículas
 use App\Http\Controllers\PasswordResetController; // Controlador que gestiona el restablecimiento de contraseña
 use App\Http\Controllers\PermisoController; // Controlador del rector para gestionar usuarios
 use App\Http\Controllers\Rector\UsuariosController; // Controlador que gestiona el registro de entradas
 use App\Http\Controllers\RegistroIngresoController; // Controlador que gestiona el registro de salidas
 use App\Http\Controllers\RegistroSalidaController; // Controlador que gestiona los permisos de salida
+use App\Http\Controllers\SedeController; // Controlador que gestiona las sedes
 use App\Http\Controllers\UserController; // Controlador que gestiona los usuarios
 use Illuminate\Http\Request; // Clase base para manejar la petición HTTP
 use Illuminate\Support\Facades\Auth; // Fachada para la autenticación de usuarios
@@ -104,6 +107,25 @@ Route::resource('admin/usuarios', UserController::class) // Define las rutas CRU
 Route::post('admin/usuarios/{usuario}/activar', [UserController::class, 'activar']) // Define la ruta para reactivar un usuario
     ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
     ->name('admin.usuarios.activar'); // Asigna el nombre 'admin.usuarios.activar' a esta ruta
+
+Route::resource('admin/matriculas', MatriculaController::class) // Define las rutas de alta y consulta de matrículas
+    ->parameters(['matriculas' => 'matricula']) // Renombra el parámetro de ruta a 'matricula'
+    ->names('admin.matriculas') // Prefija los nombres de todas las rutas con 'admin.matriculas'
+    ->only(['index', 'create', 'store']) // Solo se permite listar, crear y guardar matrículas
+    ->middleware(['auth', 'admin']); // Exige que el usuario esté autenticado y tenga rol de administrador
+
+Route::get('admin/gestion', [GestionController::class, 'index']) // Define la ruta de la pantalla de gestión con los módulos disponibles
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.gestion'); // Asigna el nombre 'admin.gestion' a esta ruta
+
+Route::resource('admin/sedes', SedeController::class) // Define las rutas CRUD de las sedes del administrador
+    ->parameters(['sedes' => 'sede']) // Renombra el parámetro de ruta a 'sede'
+    ->names('admin.sedes') // Prefija los nombres de todas las rutas con 'admin.sedes'
+    ->middleware(['auth', 'admin']); // Exige que el usuario esté autenticado y tenga rol de administrador
+
+Route::post('admin/sedes/{sede}/activar', [SedeController::class, 'activar']) // Define la ruta para reactivar una sede
+    ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador
+    ->name('admin.sedes.activar'); // Asigna el nombre 'admin.sedes.activar' a esta ruta
 
 Route::get('admin/equipos/catalogos', [EquipoController::class, 'catalogos']) // Define la ruta del catálogo de marcas y tipos
     ->middleware(['auth', 'admin']) // Exige que el usuario esté autenticado y tenga rol de administrador

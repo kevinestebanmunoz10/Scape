@@ -48,6 +48,12 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>
                     Usuarios
                 </a>
+                {{-- Acceso a la gestión de matrículas; activo en cualquier ruta admin.matriculas.* --}}
+                <a href="{{ route('admin.matriculas.index') }}" class="{{ request()->routeIs('admin.matriculas.*') ? 'active' : '' }}">
+                    {{-- Ícono de graduado --}}
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9 12 4l10 5-10 5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/></svg>
+                    Matr&iacute;culas
+                </a>
                 {{-- Acceso al módulo de accesos; activo solo en la ruta admin.accesos --}}
                 <a href="{{ route('admin.accesos') }}" class="{{ request()->routeIs('admin.accesos*') ? 'active' : '' }}">
                     {{-- Ícono de registros de acceso --}}
@@ -66,8 +72,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7a3 3 0 1 1 0 6"/><path d="M15 11a3 3 0 1 1 0 6"/><path d="M6 20l12-12"/></svg>
                     Permisos
                 </a>
-                {{-- Enlace de gestión (aún sin destino definido) --}}
-                <a href="#">
+                {{-- Enlace de gestión; abre la pantalla con los módulos de gestión --}}
+                <a href="{{ route('admin.gestion') }}" class="{{ request()->routeIs('admin.gestion*') ? 'active' : '' }}">
                     {{-- Ícono de útiles de gestión --}}
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 1 5.4-5.4l-3 3-2-2z"/></svg>
                     Gesti&oacute;n

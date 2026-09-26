@@ -1,2 +1,5 @@
 *
 !.gitignore
+!uploads/
+!uploads/logo.png
+!uploads/favicon.png
